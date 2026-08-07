@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.8] — 2026-08-07
+
+### Changed
+
+- First successful npm publish under the new name `@hiai-gg/agent-plugins-builder`
+
 ## [0.0.7] — 2026-08-07
 
 ### Changed
@@ -108,6 +114,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Documentation**: README, ARCHITECTURE.md, MIGRATION_SOURCES.md, AGENT_PLUGINS_SPEC_SUPPORT.md
 - **CI**: GitHub Actions workflow testing on Linux, macOS, and Windows
 
+[0.0.8]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.8
 [0.0.7]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.7
 [0.0.6]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.6
 [0.0.5]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.5
