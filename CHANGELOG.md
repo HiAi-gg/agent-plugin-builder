@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.3] — 2026-08-07
+
+### Fixed
+
+- CLI `--version` flag now reports correct version (was hardcoded to 0.0.2)
+- Root `package.json` and `plugin.json` version synced with published package version
+
+### Changed
+
+- Bumped all package versions to 0.0.3 for consistency across monorepo
+
 ## [0.0.2] — 2026-08-07
 
 ### Added
@@ -68,5 +79,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Documentation**: README, ARCHITECTURE.md, MIGRATION_SOURCES.md, AGENT_PLUGINS_SPEC_SUPPORT.md
 - **CI**: GitHub Actions workflow testing on Linux, macOS, and Windows
 
+[0.0.3]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.3
 [0.0.2]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.2
 [0.0.1]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.1
