@@ -15,7 +15,8 @@
   - `bun build --target node` emits **ESM** (`export { run }`), so `packages/npm/package.json` MUST have `"type": "module"` or node dies on `Unexpected token 'export'`.
   - The CLI entry only `export`s `run()` (never auto-invokes), so the bin shim must call it: `import('../dist/index.js').then(({ run }) => run())`. A bare `import(...)` does nothing.
 - **Version coupling:** `packages/cli/src/index.ts` hardcodes the CLI version for `--version`; the npm bundle is built from that source, so the version lives in two places (`packages/npm/package.json` + CLI source) and must be bumped in lockstep. Both are 0.0.2.
-- **CI publish auth:** GitHub Actions `setup-bun` (unlike setup-node) does not create npm auth config. `NODE_AUTH_TOKEN` alone is not enough — `packages/npm/.npmrc` must contain `//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}`. npm excludes `.npmrc` from the published tarball automatically.
+- **CI publish auth (current):** The release job uses **npm OIDC trusted publishing** — no `NPM_TOKEN`, no `NODE_AUTH_TOKEN`, no `.npmrc`. It requires `permissions: id-token: write` + `contents: read` and publishes with `npm publish --provenance --access public`. The npm package must have a matching trusted publisher configured on npmjs.com (repo + workflow file). README/LICENSE copying and the dist build are handled by the package's `prepack` script, so no separate build step is needed in the job.
+  - Historical note: the earlier `NPM_TOKEN` approach also required a `packages/npm/.npmrc` because `setup-bun` (unlike `setup-node`) does not write npm auth config. That file is gone and must not be reintroduced.
 
 ## Discovered Knowledge
 
