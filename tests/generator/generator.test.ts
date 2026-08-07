@@ -1,8 +1,8 @@
 import { describe, test, expect } from 'bun:test';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { generatePlugin, generateMcpJsonContent, generateSkillMd } from '@agent-plugin-builder/generator';
-import type { PortablePlugin } from '@agent-plugin-builder/core';
+import { generatePlugin, generateMcpJsonContent, generateSkillMd } from '@agent-plugins-builder/generator';
+import type { PortablePlugin } from '@agent-plugins-builder/core';
 
 describe('generatePlugin', () => {
   test('creates plugin directory with plugin.json', () => {

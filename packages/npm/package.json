@@ -1,5 +1,5 @@
 {
-  "name": "@hiai-gg/agent-plugin-builder",
+  "name": "@hiai-gg/agent-plugins-builder",
   "version": "0.0.6",
   "description": "Create, convert, and package portable Agent Plugins from existing agent setups, skills, and MCP servers",
   "type": "module",
@@ -10,12 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HiAi-gg/agent-plugin-builder.git",
+    "url": "git+https://github.com/HiAi-gg/agent-plugins-builder.git",
     "directory": "packages/npm"
   },
-  "homepage": "https://github.com/HiAi-gg/agent-plugin-builder#readme",
+  "homepage": "https://github.com/HiAi-gg/agent-plugins-builder#readme",
   "bugs": {
-    "url": "https://github.com/HiAi-gg/agent-plugin-builder/issues"
+    "url": "https://github.com/HiAi-gg/agent-plugins-builder/issues"
   },
   "keywords": [
     "agent-plugins",
@@ -29,7 +29,7 @@
     "plugin-migration"
   ],
   "bin": {
-    "agent-plugin": "bin/cli.js"
+    "agent-plugins": "bin/cli.js"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

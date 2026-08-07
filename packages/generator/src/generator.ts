@@ -1,4 +1,4 @@
-import type { PortablePlugin } from '@agent-plugin-builder/core';
+import type { PortablePlugin } from '@agent-plugins-builder/core';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { writePluginJson } from './plugin-json.ts';
@@ -157,7 +157,7 @@ export function generateReadmeContent(plugin: PortablePlugin, licenseType?: stri
 
   lines.push('## Overview');
   lines.push('');
-  lines.push('An Agent Plugin generated with [Agent Plugin Builder](https://agent-plugins.org/).');
+  lines.push('An Agent Plugin generated with [Agent Plugins Builder](https://agent-plugins.org/).');
   lines.push('');
 
   lines.push('## Contents');

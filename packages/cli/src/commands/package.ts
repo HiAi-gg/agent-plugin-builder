@@ -2,7 +2,7 @@ import { Command, Option } from 'commander';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { ZipArchive, TarArchive, type Archiver } from 'archiver';
-import { pluginJsonSchema, mcpJsonSchema, skillFrontmatterSchema } from '@agent-plugin-builder/core';
+import { pluginJsonSchema, mcpJsonSchema, skillFrontmatterSchema } from '@agent-plugins-builder/core';
 
 interface ValidationResult {
   pluginJson?: Record<string, unknown>;

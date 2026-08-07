@@ -11,7 +11,7 @@ import { detectCursorProject, migrateCursorProject } from './cursor/index.ts';
 import { detectCodexProject, migrateCodexProject } from './codex/index.ts';
 import { detectOpenCodeProject, migrateOpenCodeProject } from './opencode/index.ts';
 import { detectVscodeProject, migrateVscodeProject } from './vscode/index.ts';
-import type { PortablePlugin } from '@agent-plugin-builder/core';
+import type { PortablePlugin } from '@agent-plugins-builder/core';
 
 export type SourceFormat = 'claude' | 'cursor' | 'codex' | 'opencode' | 'vscode';
 

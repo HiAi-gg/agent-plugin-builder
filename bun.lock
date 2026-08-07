@@ -3,12 +3,12 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "agent-plugin-builder",
+      "name": "agent-plugins-builder",
       "devDependencies": {
-        "@agent-plugin-builder/cli": "workspace:*",
-        "@agent-plugin-builder/core": "workspace:*",
-        "@agent-plugin-builder/generator": "workspace:*",
-        "@agent-plugin-builder/sources": "workspace:*",
+        "@agent-plugins-builder/cli": "workspace:*",
+        "@agent-plugins-builder/core": "workspace:*",
+        "@agent-plugins-builder/generator": "workspace:*",
+        "@agent-plugins-builder/sources": "workspace:*",
         "@eslint/js": "^10.0.1",
         "@types/bun": "^1.1.0",
         "@typescript-eslint/eslint-plugin": "^8.66.0",
@@ -19,15 +19,15 @@
       },
     },
     "packages/cli": {
-      "name": "@agent-plugin-builder/cli",
-      "version": "0.0.2",
+      "name": "@agent-plugins-builder/cli",
+      "version": "0.0.6",
       "bin": {
-        "agent-plugin": "./bin/agent-plugin",
+        "agent-plugins": "./bin/agent-plugins",
       },
       "dependencies": {
-        "@agent-plugin-builder/core": "workspace:*",
-        "@agent-plugin-builder/generator": "workspace:*",
-        "@agent-plugin-builder/sources": "workspace:*",
+        "@agent-plugins-builder/core": "workspace:*",
+        "@agent-plugins-builder/generator": "workspace:*",
+        "@agent-plugins-builder/sources": "workspace:*",
         "@types/archiver": "^8.0.0",
         "archiver": "^8.0.0",
         "chalk": "^5.3.0",
@@ -39,44 +39,44 @@
       },
     },
     "packages/core": {
-      "name": "@agent-plugin-builder/core",
-      "version": "0.0.1",
+      "name": "@agent-plugins-builder/core",
+      "version": "0.0.6",
       "dependencies": {
         "yaml": "^2.9.0",
         "zod": "^3.23.0",
       },
     },
     "packages/generator": {
-      "name": "@agent-plugin-builder/generator",
-      "version": "0.0.1",
+      "name": "@agent-plugins-builder/generator",
+      "version": "0.0.6",
       "dependencies": {
-        "@agent-plugin-builder/core": "workspace:*",
+        "@agent-plugins-builder/core": "workspace:*",
         "yaml": "^2.9.0",
       },
     },
     "packages/npm": {
-      "name": "@hiai-gg/agent-plugin-builder",
-      "version": "0.0.2",
+      "name": "@hiai-gg/agent-plugins-builder",
+      "version": "0.0.6",
       "bin": {
-        "agent-plugin": "./bin/cli.js",
+        "agent-plugins": "bin/cli.js",
       },
     },
     "packages/sources": {
-      "name": "@agent-plugin-builder/sources",
-      "version": "0.0.1",
+      "name": "@agent-plugins-builder/sources",
+      "version": "0.0.6",
       "dependencies": {
-        "@agent-plugin-builder/core": "workspace:*",
+        "@agent-plugins-builder/core": "workspace:*",
       },
     },
   },
   "packages": {
-    "@agent-plugin-builder/cli": ["@agent-plugin-builder/cli@workspace:packages/cli"],
+    "@agent-plugins-builder/cli": ["@agent-plugins-builder/cli@workspace:packages/cli"],
 
-    "@agent-plugin-builder/core": ["@agent-plugin-builder/core@workspace:packages/core"],
+    "@agent-plugins-builder/core": ["@agent-plugins-builder/core@workspace:packages/core"],
 
-    "@agent-plugin-builder/generator": ["@agent-plugin-builder/generator@workspace:packages/generator"],
+    "@agent-plugins-builder/generator": ["@agent-plugins-builder/generator@workspace:packages/generator"],
 
-    "@agent-plugin-builder/sources": ["@agent-plugin-builder/sources@workspace:packages/sources"],
+    "@agent-plugins-builder/sources": ["@agent-plugins-builder/sources@workspace:packages/sources"],
 
     "@eslint-community/eslint-utils": ["@eslint-community/eslint-utils@4.10.1", "", { "dependencies": { "eslint-visitor-keys": "^3.4.3" }, "peerDependencies": { "eslint": "^6.0.0 || ^7.0.0 || >=8.0.0" } }, "sha512-cuadcxVFE8sDK6iWJbs8Sn0av2Nrh2QSGQhVlBW9AaAHqHwjWsZHT8LJ4hFGPh7ASBV2deFdM7H/DPjulmh8rg=="],
 
@@ -94,7 +94,7 @@
 
     "@eslint/plugin-kit": ["@eslint/plugin-kit@0.7.2", "", { "dependencies": { "@eslint/core": "^1.2.1", "levn": "^0.4.1" } }, "sha512-+CNAzxglkrpNf/kKywqQfk74QjtceuOE7Qm+AF8miRvPF/wmmK5+OJOgVh3AVTT3RP2mH3+FOaxlE5v72owk0A=="],
 
-    "@hiai-gg/agent-plugin-builder": ["@hiai-gg/agent-plugin-builder@workspace:packages/npm"],
+    "@hiai-gg/agent-plugins-builder": ["@hiai-gg/agent-plugins-builder@workspace:packages/npm"],
 
     "@humanfs/core": ["@humanfs/core@0.19.2", "", { "dependencies": { "@humanfs/types": "^0.15.0" } }, "sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA=="],
 
@@ -116,7 +116,7 @@
 
     "@types/json-schema": ["@types/json-schema@7.0.15", "", {}, "sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA=="],
 
-    "@types/node": ["@types/node@26.1.2", "", { "dependencies": { "undici-types": "~8.3.0" } }, "sha512-Vu4a5UFA9rIIFJ7rB/Vaafh9lrCQszopTCx6KjFboXTGQbPNasehVR5TEiithSDGyd1DEiUByggTZsg8jukeIg=="],
+    "@types/node": ["@types/node@26.2.0", "", { "dependencies": { "undici-types": "~8.3.0" } }, "sha512-5IviulTZeRNp2vAJ514cc/HUlY5nZ9fCbq9DMyC52BrhFZACo3nI0R7qBxhQmo/d27NFe96ur/b7Wwxklda+kg=="],
 
     "@types/prompts": ["@types/prompts@2.4.9", "", { "dependencies": { "@types/node": "*", "kleur": "^3.0.3" } }, "sha512-qTxFi6Buiu8+50/+3DGIWLHM6QuWsEKugJnnP6iv2Mc4ncxE4A/OJkjuVOA+5X0X1S/nq5VJRa8Lu+nwcvbrKA=="],
 
@@ -198,7 +198,7 @@
 
     "escape-string-regexp": ["escape-string-regexp@4.0.0", "", {}, "sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA=="],
 
-    "eslint": ["eslint@10.8.0", "", { "dependencies": { "@eslint-community/eslint-utils": "^4.8.0", "@eslint-community/regexpp": "^4.12.2", "@eslint/config-array": "^0.23.5", "@eslint/config-helpers": "^0.7.0", "@eslint/core": "^1.2.1", "@eslint/plugin-kit": "^0.7.2", "@humanfs/node": "^0.16.6", "@humanwhocodes/module-importer": "^1.0.1", "@humanwhocodes/retry": "^0.4.2", "@types/estree": "^1.0.6", "ajv": "^6.14.0", "cross-spawn": "^7.0.6", "debug": "^4.3.2", "escape-string-regexp": "^4.0.0", "eslint-scope": "^9.1.2", "eslint-visitor-keys": "^5.0.1", "espree": "^11.2.0", "esquery": "^1.7.0", "esutils": "^2.0.2", "fast-deep-equal": "^3.1.3", "file-entry-cache": "^8.0.0", "find-up": "^5.0.0", "glob-parent": "^6.0.2", "ignore": "^5.2.0", "imurmurhash": "^0.1.4", "is-glob": "^4.0.0", "json-stable-stringify-without-jsonify": "^1.0.1", "minimatch": "^10.2.5", "natural-compare": "^1.4.0", "optionator": "^0.9.3" }, "peerDependencies": { "jiti": "*" }, "optionalPeers": ["jiti"], "bin": { "eslint": "bin/eslint.js" } }, "sha512-nuKKvN+oIBO0koN7Tm7dlkmnkc21mtt0QJLwAKzjLq14y6lRTdVG36MZHJ8eQHwdJMwZbQNMlPOYedMq/oVJvQ=="],
+    "eslint": ["eslint@10.8.1", "", { "dependencies": { "@eslint-community/eslint-utils": "^4.8.0", "@eslint-community/regexpp": "^4.12.2", "@eslint/config-array": "^0.23.5", "@eslint/config-helpers": "^0.7.0", "@eslint/core": "^1.2.1", "@eslint/plugin-kit": "^0.7.2", "@humanfs/node": "^0.16.6", "@humanwhocodes/module-importer": "^1.0.1", "@humanwhocodes/retry": "^0.4.2", "@types/estree": "^1.0.6", "ajv": "^6.14.0", "cross-spawn": "^7.0.6", "debug": "^4.3.2", "escape-string-regexp": "^4.0.0", "eslint-scope": "^9.1.2", "eslint-visitor-keys": "^5.0.1", "espree": "^11.2.0", "esquery": "^1.7.0", "esutils": "^2.0.2", "fast-deep-equal": "^3.1.3", "file-entry-cache": "^8.0.0", "find-up": "^5.0.0", "glob-parent": "^6.0.2", "ignore": "^5.2.0", "imurmurhash": "^0.1.4", "is-glob": "^4.0.0", "json-stable-stringify-without-jsonify": "^1.0.1", "minimatch": "^10.2.5", "natural-compare": "^1.4.0", "optionator": "^0.9.3" }, "peerDependencies": { "jiti": "*" }, "optionalPeers": ["jiti"], "bin": { "eslint": "bin/eslint.js" } }, "sha512-wqA7W2jbsC/BnV9Iv1UZpKVFkO1AdNoSmYW8NWG4HNOBbkAMvIqDZ27pI2f07dqn583NcIC44ckjAcOXDL1QbQ=="],
 
     "eslint-scope": ["eslint-scope@9.1.2", "", { "dependencies": { "@types/esrecurse": "^4.3.1", "@types/estree": "^1.0.8", "esrecurse": "^4.3.0", "estraverse": "^5.2.0" } }, "sha512-xS90H51cKw0jltxmvmHy2Iai1LIqrfbw57b79w/J7MfvDfkIkFZ+kj6zC3BjtUwh150HsSSdxXZcsuv72miDFQ=="],
 

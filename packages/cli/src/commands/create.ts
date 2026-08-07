@@ -1,12 +1,12 @@
 import { Command } from 'commander';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { writePluginJson, writeSkills, writeMcpJson, generatePlugin } from '@agent-plugin-builder/generator';
+import { writePluginJson, writeSkills, writeMcpJson, generatePlugin } from '@agent-plugins-builder/generator';
 import {
   parseConfigFile,
   configToPortablePlugin,
-} from '@agent-plugin-builder/core';
-import type { PluginMetadata, PortableSkill, PortableMcpServer } from '@agent-plugin-builder/core';
+} from '@agent-plugins-builder/core';
+import type { PluginMetadata, PortableSkill, PortableMcpServer } from '@agent-plugins-builder/core';
 
 function collect(value: string, previous: string[]): string[] {
   return [...previous, value];

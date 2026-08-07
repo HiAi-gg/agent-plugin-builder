@@ -9,7 +9,7 @@ export function run() {
   const program = new Command();
 
   program
-    .name('agent-plugin')
+    .name('agent-plugins')
     .description('Create, migrate, package, and inspect Agent Plugins');
 
   // Global flags

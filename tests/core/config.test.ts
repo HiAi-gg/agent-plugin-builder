@@ -1,7 +1,7 @@
 import { describe, test, expect } from 'bun:test';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { parseConfigFile, configToPortablePlugin } from '@agent-plugin-builder/core';
+import { parseConfigFile, configToPortablePlugin } from '@agent-plugins-builder/core';
 
 describe('plugin config parsing', () => {
   test('parses a valid config file', () => {

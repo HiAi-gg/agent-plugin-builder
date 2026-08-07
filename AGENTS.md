@@ -1,10 +1,10 @@
-# AGENTS.md — Agent Plugin Builder
+# AGENTS.md — Agent Plugins Builder
 
 This file provides operational rules for AI coding agents working on this repository.
 
 ## Project purpose
 
-Agent Plugin Builder is a CLI tool for creating, migrating, packaging, and inspecting [Agent Plugins](https://agent-plugins.org/) conforming to the Agent Plugins v1.0.0 specification.
+Agent Plugins Builder is a CLI tool for creating, migrating, packaging, and inspecting [Agent Plugins](https://agent-plugins.org/) conforming to the Agent Plugins v1.0.0 specification.
 
 ## Architecture
 
@@ -12,10 +12,10 @@ Monorepo (Bun workspaces) with four packages:
 
 | Package | Purpose |
 |---|---|
-| `@agent-plugin-builder/core` | Canonical types, Zod schemas, spec layer, path/env utilities |
-| `@agent-plugin-builder/generator` | Filesystem emission: plugin.json, mcp.json, skills/, extensions/ |
-| `@agent-plugin-builder/sources` | Migration adapters: Claude, Cursor, Codex, OpenCode, VS Code |
-| `@agent-plugin-builder/cli` | CLI entry point: `agent-plugin` binary with 5 commands |
+| `@agent-plugins-builder/core` | Canonical types, Zod schemas, spec layer, path/env utilities |
+| `@agent-plugins-builder/generator` | Filesystem emission: plugin.json, mcp.json, skills/, extensions/ |
+| `@agent-plugins-builder/sources` | Migration adapters: Claude, Cursor, Codex, OpenCode, VS Code |
+| `@agent-plugins-builder/cli` | CLI entry point: `agent-plugins` binary with 5 commands |
 
 Canonical intermediate model: `PortablePlugin` — all adapters produce it, all generators consume it.
 
@@ -32,7 +32,7 @@ Spec layer: `packages/core/src/spec/v1/` — version-specific constants isolated
 ## Repository layout
 
 ```
-agent-plugin-builder/
+agent-plugins-builder/
 ├── packages/
 │   ├── core/
 │   ├── generator/
@@ -42,7 +42,7 @@ agent-plugin-builder/
 ├── docs/
 ├── plugin.json          ← project is itself an Agent Plugin
 ├── skills/
-│   └── build-agent-plugin/SKILL.md
+│   └── build-agent-plugins/SKILL.md
 └── AGENTS.md
 ```
 

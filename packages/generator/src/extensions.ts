@@ -1,4 +1,4 @@
-import type { PortableExtension } from '@agent-plugin-builder/core';
+import type { PortableExtension } from '@agent-plugins-builder/core';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 

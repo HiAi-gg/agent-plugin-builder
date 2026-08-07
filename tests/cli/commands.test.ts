@@ -7,7 +7,7 @@ describe('CLI commands', () => {
   test('init --yes creates plugin with defaults', () => {
     const outputDir = '/tmp/test-cli-init-' + Date.now();
     execSync(
-      `bun packages/cli/bin/agent-plugin init --yes --name test-plugin ${outputDir}`,
+      `bun packages/cli/bin/agent-plugins init --yes --name test-plugin ${outputDir}`,
       {
         stdio: 'pipe',
       },
@@ -29,7 +29,7 @@ describe('CLI commands', () => {
   test('init --non-interactive is an alias for --yes', () => {
     const outputDir = '/tmp/test-cli-init-ni-' + Date.now();
     execSync(
-      `bun packages/cli/bin/agent-plugin init --non-interactive --name ni-plugin ${outputDir}`,
+      `bun packages/cli/bin/agent-plugins init --non-interactive --name ni-plugin ${outputDir}`,
       { stdio: 'pipe' },
     );
 
@@ -70,7 +70,7 @@ license-file: MIT
     const outputDir = path.join(configDir, 'out');
 
     execSync(
-      `bun packages/cli/bin/agent-plugin init --config ${configPath} ${outputDir}`,
+      `bun packages/cli/bin/agent-plugins init --config ${configPath} ${outputDir}`,
       { stdio: 'pipe' },
     );
 
@@ -93,7 +93,7 @@ license-file: MIT
   test('create --skills-only creates plugin with skill', () => {
     const outputDir = '/tmp/test-cli-create-' + Date.now();
     execSync(
-      `bun packages/cli/bin/agent-plugin create --name test-plugin --skills-only --output ${outputDir}`,
+      `bun packages/cli/bin/agent-plugins create --name test-plugin --skills-only --output ${outputDir}`,
       { stdio: 'pipe' },
     );
 
@@ -134,7 +134,7 @@ license-file: MIT
     const outputDir = path.join(configDir, 'out');
 
     execSync(
-      `bun packages/cli/bin/agent-plugin create --config ${configPath} --output ${outputDir}`,
+      `bun packages/cli/bin/agent-plugins create --config ${configPath} --output ${outputDir}`,
       { stdio: 'pipe' },
     );
 
@@ -158,7 +158,7 @@ license-file: MIT
   test('create combines skills and MCP from flags', () => {
     const outputDir = '/tmp/test-cli-combined-' + Date.now();
     execSync(
-      `bun packages/cli/bin/agent-plugin create --name test-plugin --skill alpha --skill beta ` +
+      `bun packages/cli/bin/agent-plugins create --name test-plugin --skill alpha --skill beta ` +
         `--mcp-type stdio --mcp-command node --mcp-name my-server --output ${outputDir}`,
       { stdio: 'pipe' },
     );
@@ -182,7 +182,7 @@ license-file: MIT
   test('create supports full manifest metadata flags', () => {
     const outputDir = '/tmp/test-cli-metadata-' + Date.now();
     execSync(
-      `bun packages/cli/bin/agent-plugin create --name test-plugin --version 1.2.3 ` +
+      `bun packages/cli/bin/agent-plugins create --name test-plugin --version 1.2.3 ` +
         `--author-name "Jane Doe" --author-email jane@example.com --homepage https://example.com ` +
         `--license MIT --keywords "test,demo" --output ${outputDir}`,
       { stdio: 'pipe' },
@@ -206,13 +206,13 @@ license-file: MIT
   test('package creates a zip archive by default', () => {
     const pluginDir = '/tmp/test-cli-pkg-src-' + Date.now();
     execSync(
-      `bun packages/cli/bin/agent-plugin create --name test-pkg --skills-only --output ${pluginDir}`,
+      `bun packages/cli/bin/agent-plugins create --name test-pkg --skills-only --output ${pluginDir}`,
       { stdio: 'pipe' },
     );
 
     const outDir = '/tmp/test-cli-pkg-out-' + Date.now();
     execSync(
-      `bun packages/cli/bin/agent-plugin package ${pluginDir} --output ${outDir}`,
+      `bun packages/cli/bin/agent-plugins package ${pluginDir} --output ${outDir}`,
       { stdio: 'pipe' },
     );
 
@@ -228,13 +228,13 @@ license-file: MIT
   test('package --format tar.gz creates a gzipped tarball', () => {
     const pluginDir = '/tmp/test-cli-pkg-tar-src-' + Date.now();
     execSync(
-      `bun packages/cli/bin/agent-plugin create --name test-pkg --skills-only --output ${pluginDir}`,
+      `bun packages/cli/bin/agent-plugins create --name test-pkg --skills-only --output ${pluginDir}`,
       { stdio: 'pipe' },
     );
 
     const outDir = '/tmp/test-cli-pkg-tar-out-' + Date.now();
     execSync(
-      `bun packages/cli/bin/agent-plugin package ${pluginDir} --output ${outDir} --format tar.gz`,
+      `bun packages/cli/bin/agent-plugins package ${pluginDir} --output ${outDir} --format tar.gz`,
       { stdio: 'pipe' },
     );
 
@@ -250,13 +250,13 @@ license-file: MIT
   test('package --format dir copies the plugin directory', () => {
     const pluginDir = '/tmp/test-cli-pkg-dir-src-' + Date.now();
     execSync(
-      `bun packages/cli/bin/agent-plugin create --name test-pkg --skills-only --output ${pluginDir}`,
+      `bun packages/cli/bin/agent-plugins create --name test-pkg --skills-only --output ${pluginDir}`,
       { stdio: 'pipe' },
     );
 
     const outDir = '/tmp/test-cli-pkg-dir-out-' + Date.now();
     execSync(
-      `bun packages/cli/bin/agent-plugin package ${pluginDir} --output ${outDir} --format dir`,
+      `bun packages/cli/bin/agent-plugins package ${pluginDir} --output ${outDir} --format dir`,
       { stdio: 'pipe' },
     );
 
@@ -272,13 +272,13 @@ license-file: MIT
   test('package --dry-run validates without creating an archive', () => {
     const pluginDir = '/tmp/test-cli-pkg-dry-src-' + Date.now();
     execSync(
-      `bun packages/cli/bin/agent-plugin create --name test-pkg --skills-only --output ${pluginDir}`,
+      `bun packages/cli/bin/agent-plugins create --name test-pkg --skills-only --output ${pluginDir}`,
       { stdio: 'pipe' },
     );
 
     const outDir = '/tmp/test-cli-pkg-dry-out-' + Date.now();
     execSync(
-      `bun packages/cli/bin/agent-plugin package ${pluginDir} --output ${outDir} --dry-run`,
+      `bun packages/cli/bin/agent-plugins package ${pluginDir} --output ${outDir} --dry-run`,
       { stdio: 'pipe' },
     );
 

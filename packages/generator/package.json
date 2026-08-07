@@ -1,12 +1,12 @@
 {
-  "name": "@agent-plugin-builder/generator",
+  "name": "@agent-plugins-builder/generator",
   "version": "0.0.6",
-  "description": "Filesystem generator for Agent Plugin Builder",
+  "description": "Filesystem generator for Agent Plugins Builder",
   "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HiAi-gg/agent-plugin-builder.git",
+    "url": "https://github.com/HiAi-gg/agent-plugins-builder.git",
     "directory": "packages/generator"
   },
   "main": "./src/index.ts",
@@ -16,7 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@agent-plugin-builder/core": "workspace:*",
+    "@agent-plugins-builder/core": "workspace:*",
     "yaml": "^2.9.0"
   }
 }

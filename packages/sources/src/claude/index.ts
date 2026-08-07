@@ -6,8 +6,8 @@ import type {
   PortableMcpServer,
   SourceArtifact,
   MigrationWarning,
-} from '@agent-plugin-builder/core';
-import { MigrationClassification } from '@agent-plugin-builder/core';
+} from '@agent-plugins-builder/core';
+import { MigrationClassification } from '@agent-plugins-builder/core';
 
 export interface ClaudeAdapterResult {
   plugin: PortablePlugin;

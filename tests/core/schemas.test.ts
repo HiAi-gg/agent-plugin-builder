@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'bun:test';
-import { pluginJsonSchema, mcpJsonSchema, skillFrontmatterSchema } from '@agent-plugin-builder/core';
+import { pluginJsonSchema, mcpJsonSchema, skillFrontmatterSchema } from '@agent-plugins-builder/core';
 
 describe('plugin.json schema', () => {
   test('validates valid plugin.json', () => {

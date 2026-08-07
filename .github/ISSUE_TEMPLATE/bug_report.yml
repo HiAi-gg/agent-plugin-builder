@@ -1,12 +1,12 @@
 name: Bug Report
-description: Report a bug in Agent Plugin Builder
+description: Report a bug in Agent Plugins Builder
 labels: ["bug"]
 body:
   - type: input
     id: version
     attributes:
-      label: Agent Plugin Builder version
-      description: Output of `agent-plugin --version`
+      label: Agent Plugins Builder version
+      description: Output of `agent-plugins --version`
       placeholder: "0.0.1"
     validations:
       required: true

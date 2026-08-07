@@ -1,9 +1,9 @@
-# Agent Plugin Builder
+# Agent Plugins Builder
 
 Create, convert, and package portable Agent Plugins from existing agent setups, skills, and MCP servers.
 
-[![CI](https://github.com/HiAi-gg/agent-plugin-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/HiAi-gg/agent-plugin-builder/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/@hiai-gg/agent-plugin-builder)](https://www.npmjs.com/package/@hiai-gg/agent-plugin-builder)
+[![CI](https://github.com/HiAi-gg/agent-pluginss-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/HiAi-gg/agent-pluginss-builder/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@hiai-gg/agent-pluginss-builder)](https://www.npmjs.com/package/@hiai-gg/agent-pluginss-builder)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue)](https://www.typescriptlang.org/)
 [![Bun](https://img.shields.io/badge/Runtime-Bun-black)](https://bun.sh/)
@@ -12,30 +12,30 @@ Create, convert, and package portable Agent Plugins from existing agent setups, 
 
 The Agent Plugins ecosystem is growing. Multiple AI coding agents — VS Code, Cursor, GitHub Copilot, ChatGPT/Codex, Claude Code, OpenCode — each have their own configuration formats for skills, instructions, and MCP servers.
 
-Agent Plugin Builder converts between these formats and the portable [Agent Plugins](https://agent-plugins.org/) standard, so you can write once and use across compatible clients.
+Agent Plugins Builder converts between these formats and the portable [Agent Plugins](https://agent-pluginss.org/) standard, so you can write once and use across compatible clients.
 
 ## Quick Start
 
 ```bash
 # Install globally (npm or bun)
-npm install -g @hiai-gg/agent-plugin-builder
-bun install -g @hiai-gg/agent-plugin-builder
+npm install -g @hiai-gg/agent-pluginss-builder
+bun install -g @hiai-gg/agent-pluginss-builder
 
 # Create a new plugin interactively
-agent-plugin init
+agent-plugins init
 
 # Migrate from an existing agent setup
-agent-plugin migrate ./my-project
+agent-plugins migrate ./my-project
 
 # Validate and package as an archive
-agent-plugin package ./my-plugin --output ./dist
+agent-plugins package ./my-plugin --output ./dist
 ```
 
 Or run without installing:
 
 ```bash
-bunx @hiai-gg/agent-plugin-builder init
-bunx @hiai-gg/agent-plugin-builder migrate ./my-project --from claude
+bunx @hiai-gg/agent-pluginss-builder init
+bunx @hiai-gg/agent-pluginss-builder migrate ./my-project --from claude
 ```
 
 ## What It Does
@@ -44,17 +44,17 @@ bunx @hiai-gg/agent-plugin-builder migrate ./my-project --from claude
 
 ```bash
 # From a declarative config file (supports skills, MCP, metadata, README, LICENSE)
-agent-plugin create --config plugin.yml --output ./my-plugin
+agent-plugins create --config plugin.yml --output ./my-plugin
 
 # From flags — combine skills and MCP in one plugin
-agent-plugin create --name project-memory \
+agent-plugins create --name project-memory \
   --skill create-plan --skill report-progress \
   --mcp-type stdio --mcp-command "node server.js" --mcp-name my-server \
   --version 0.1.0 --author-name "Jane Doe" --license MIT
 
 # Legacy single-purpose forms
-agent-plugin create --name project-memory --skills-only
-agent-plugin create --name my-mcp-plugin --mcp-only --mcp-type stdio --mcp-command "node server.js"
+agent-plugins create --name project-memory --skills-only
+agent-plugins create --name my-mcp-plugin --mcp-only --mcp-type stdio --mcp-command "node server.js"
 ```
 
 Example `plugin.yml`:
@@ -88,7 +88,7 @@ many as you like), MCP servers (stdio, streamable-http, or sse), README/LICENSE,
 and output directory — then previews the files before generating:
 
 ```bash
-agent-plugin init
+agent-plugins init
 ```
 
 All prompts have sensible defaults you can accept with Enter. The plugin name is
@@ -99,13 +99,13 @@ Non-interactive / CI usage:
 
 ```bash
 # Use defaults (one example skill, README + LICENSE)
-agent-plugin init --yes --name my-plugin
+agent-plugins init --yes --name my-plugin
 
 # Same as --yes
-agent-plugin init --non-interactive --name my-plugin
+agent-plugins init --non-interactive --name my-plugin
 
 # Declarative config — no prompts at all
-agent-plugin init --config plugin.yml
+agent-plugins init --config plugin.yml
 ```
 
 `--yes` / `--non-interactive` also accept `--description`, `--version`,
@@ -116,14 +116,14 @@ defaults to `./<plugin-name>` (or the positional argument).
 
 ```bash
 # Auto-detect source format
-agent-plugin migrate ./my-project
+agent-plugins migrate ./my-project
 
 # Specify source format
-agent-plugin migrate ./my-project --from claude
-agent-plugin migrate ./my-project --from cursor
-agent-plugin migrate ./my-project --from codex
-agent-plugin migrate ./my-project --from opencode
-agent-plugin migrate ./my-project --from vscode
+agent-plugins migrate ./my-project --from claude
+agent-plugins migrate ./my-project --from cursor
+agent-plugins migrate ./my-project --from codex
+agent-plugins migrate ./my-project --from opencode
+agent-plugins migrate ./my-project --from vscode
 ```
 
 Migration reports what is portable, what is client-specific, and what is unsupported:
@@ -144,11 +144,11 @@ Unsupported:
 ### Validate and inspect plugins
 
 ```bash
-agent-plugin package ./my-plugin          # validate and package as <name>.zip
-agent-plugin package ./my-plugin --format tar.gz --output ./dist   # gzipped tarball
-agent-plugin package ./my-plugin --format dir --output ./dist      # directory copy
-agent-plugin inspect ./my-plugin          # show structure
-agent-plugin inspect ./my-plugin --json   # machine-readable output
+agent-plugins package ./my-plugin          # validate and package as <name>.zip
+agent-plugins package ./my-plugin --format tar.gz --output ./dist   # gzipped tarball
+agent-plugins package ./my-plugin --format dir --output ./dist      # directory copy
+agent-plugins inspect ./my-plugin          # show structure
+agent-plugins inspect ./my-plugin --json   # machine-readable output
 ```
 
 ## Supported Migration Sources
@@ -165,7 +165,7 @@ See [Migration Sources](docs/MIGRATION_SOURCES.md) for details on what each adap
 
 ## Standards
 
-This project targets the [Agent Plugins specification v1.0.0](https://agent-plugins.org/) (Working Draft).
+This project targets the [Agent Plugins specification v1.0.0](https://agent-pluginss.org/) (Working Draft).
 
 Agent Plugin Skills follow the [Agent Skills specification](https://agentskills.io/specification).
 
@@ -190,7 +190,7 @@ See [Compatibility](docs/COMPATIBILITY.md) for details and evidence levels.
 ```
 Claude / Cursor / Codex / OpenCode / VS Code
                 ↓
-      Agent Plugin Builder (source adapter)
+      Agent Plugins Builder (source adapter)
                 ↓
         PortablePlugin (canonical model)
                 ↓

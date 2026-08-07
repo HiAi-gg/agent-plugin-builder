@@ -51,7 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Real package artifacts**: `package --format zip` (default), `--format tar.gz`, `--format dir`
 - **Improved interactive init**: Full wizard with skills loop, MCP loop, preview, confirmation
 - **YAML serialization**: Proper YAML frontmatter for SKILL.md (not JSON-in-YAML)
-- **npm distribution**: `bunx @hiai-gg/agent-plugin-builder` and `npx @hiai-gg/agent-plugin-builder` work
+- **npm distribution**: `bunx @hiai-gg/agent-plugins-builder` and `npx @hiai-gg/agent-plugins-builder` work
 - **CI**: Release job builds and publishes `packages/npm` to the npm registry on version tags
 
 ### Fixed
@@ -97,9 +97,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Documentation**: README, ARCHITECTURE.md, MIGRATION_SOURCES.md, AGENT_PLUGINS_SPEC_SUPPORT.md
 - **CI**: GitHub Actions workflow testing on Linux, macOS, and Windows
 
-[0.0.6]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.6
-[0.0.5]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.5
-[0.0.4]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.4
-[0.0.3]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.3
-[0.0.2]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.2
-[0.0.1]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.1
+[0.0.6]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.6
+[0.0.5]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.5
+[0.0.4]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.4
+[0.0.3]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.3
+[0.0.2]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.2
+[0.0.1]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.1

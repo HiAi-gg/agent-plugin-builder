@@ -1,5 +1,5 @@
 {
-  "name": "agent-plugin-builder",
+  "name": "agent-plugins-builder",
   "version": "0.0.6",
   "description": "Create, convert, and package portable Agent Plugins from existing agent setups, skills, and MCP servers",
   "private": true,
@@ -10,11 +10,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/HiAi-gg/agent-plugin-builder.git"
+    "url": "https://github.com/HiAi-gg/agent-plugins-builder.git"
   },
-  "homepage": "https://github.com/HiAi-gg/agent-plugin-builder#readme",
+  "homepage": "https://github.com/HiAi-gg/agent-plugins-builder#readme",
   "bugs": {
-    "url": "https://github.com/HiAi-gg/agent-plugin-builder/issues"
+    "url": "https://github.com/HiAi-gg/agent-plugins-builder/issues"
   },
   "keywords": [
     "agent-plugins",
@@ -37,10 +37,10 @@
     "lint": "bunx --bun eslint ."
   },
   "devDependencies": {
-    "@agent-plugin-builder/cli": "workspace:*",
-    "@agent-plugin-builder/core": "workspace:*",
-    "@agent-plugin-builder/generator": "workspace:*",
-    "@agent-plugin-builder/sources": "workspace:*",
+    "@agent-plugins-builder/cli": "workspace:*",
+    "@agent-plugins-builder/core": "workspace:*",
+    "@agent-plugins-builder/generator": "workspace:*",
+    "@agent-plugins-builder/sources": "workspace:*",
     "@eslint/js": "^10.0.1",
     "@types/bun": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^8.66.0",

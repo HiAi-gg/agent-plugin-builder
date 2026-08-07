@@ -1,9 +1,9 @@
 ---
-name: "build-agent-plugin"
+name: "build-agent-plugins"
 description: "Create, migrate, package, and inspect Agent Plugins for modern AI agents"
 ---
 
-# Build Agent Plugin
+# Build Agent Plugins
 
 Use this skill to create, migrate, package, and inspect Agent Plugins.
 
@@ -21,32 +21,32 @@ Use this skill when you need to:
 
 ```bash
 # Interactive
-bun packages/cli/bin/agent-plugin init
+bun packages/cli/bin/agent-plugins init
 
 # From flags
-bun packages/cli/bin/agent-plugin create --name my-plugin --skills-only
+bun packages/cli/bin/agent-plugins create --name my-plugin --skills-only
 ```
 
 ### Migrate from existing setup
 
 ```bash
 # Auto-detect source format
-bun packages/cli/bin/agent-plugin migrate ./my-project
+bun packages/cli/bin/agent-plugins migrate ./my-project
 
 # Specify source format
-bun packages/cli/bin/agent-plugin migrate ./my-project --from claude
+bun packages/cli/bin/agent-plugins migrate ./my-project --from claude
 ```
 
 ### Validate and package
 
 ```bash
-bun packages/cli/bin/agent-plugin package ./my-plugin
+bun packages/cli/bin/agent-plugins package ./my-plugin
 ```
 
 ### Inspect a plugin
 
 ```bash
-bun packages/cli/bin/agent-plugin inspect ./my-plugin
+bun packages/cli/bin/agent-plugins inspect ./my-plugin
 ```
 
 ## Examples
@@ -54,7 +54,7 @@ bun packages/cli/bin/agent-plugin inspect ./my-plugin
 ### Create a skills-only plugin
 
 ```bash
-bun packages/cli/bin/agent-plugin create \
+bun packages/cli/bin/agent-plugins create \
   --name my-skills \
   --skills-only \
   --output ./my-skills-plugin
@@ -63,7 +63,7 @@ bun packages/cli/bin/agent-plugin create \
 ### Migrate from Claude Code
 
 ```bash
-bun packages/cli/bin/agent-plugin migrate \
+bun packages/cli/bin/agent-plugins migrate \
   ./my-claude-project \
   --from claude \
   --output ./my-agent-plugin
@@ -72,7 +72,7 @@ bun packages/cli/bin/agent-plugin migrate \
 ### Validate a plugin
 
 ```bash
-bun packages/cli/bin/agent-plugin package ./my-plugin --dry-run
+bun packages/cli/bin/agent-plugins package ./my-plugin --dry-run
 ```
 
 ## Output Structure

@@ -1,4 +1,4 @@
-import type { PortableSkill } from '@agent-plugin-builder/core';
+import type { PortableSkill } from '@agent-plugins-builder/core';
 import YAML from 'yaml';
 import * as fs from 'node:fs';
 import * as path from 'node:path';

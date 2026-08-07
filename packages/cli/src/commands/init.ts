@@ -2,19 +2,19 @@ import { Command } from 'commander';
 import prompts from 'prompts';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { generatePlugin } from '@agent-plugin-builder/generator';
+import { generatePlugin } from '@agent-plugins-builder/generator';
 import {
   parseConfigFile,
   configToPortablePlugin,
   NAME_PATTERN,
   NAME_MAX_LENGTH,
-} from '@agent-plugin-builder/core';
+} from '@agent-plugins-builder/core';
 import type {
   PluginMetadata,
   PortablePlugin,
   PortableSkill,
   PortableMcpServer,
-} from '@agent-plugin-builder/core';
+} from '@agent-plugins-builder/core';
 
 const DEFAULT_NAME = 'my-plugin';
 const DEFAULT_DESCRIPTION = 'An Agent Plugin';

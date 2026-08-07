@@ -1,6 +1,6 @@
 # Blind Test v0.0.1 — Response & Resolution
 
-This document addresses every finding from the v0.0.1 blind test where 10 real-world plugins were built with Agent Plugin Builder.
+This document addresses every finding from the v0.0.1 blind test where 10 real-world plugins were built with Agent Plugins Builder.
 
 **Original result:** Builder-only: 0/10, Minor manual intervention: 0/10, Major manual intervention: 10/10.
 
@@ -10,7 +10,7 @@ This document addresses every finding from the v0.0.1 blind test where 10 real-w
 
 | Finding | Status | Resolution |
 |---|---|---|
-| B-001 | FIXED | Published `agent-plugin-builder` to npm. `bunx agent-plugin-builder --help` and `npx agent-plugin-builder --help` both work. |
+| B-001 | FIXED | Published `agent-plugins-builder` to npm. `bunx agent-plugins-builder --help` and `npx agent-plugins-builder --help` both work. |
 | B-002 | FIXED | Complete MCP authoring: `--mcp-name`, `--mcp-args`, `--mcp-env`, `--mcp-cwd` flags plus declarative `plugin.yml` with named server map. |
 | B-003 | FIXED | Full manifest metadata exposed: `--version`, `--author-name`, `--author-email`, `--author-url`, `--homepage`, `--repository`, `--license`, `--keywords`. All plugin.json fields accessible. |
 | B-004 | FIXED | Real skill authoring with body files (`--skill-body-file`), multiple skills (`--skill` repeatable), and proper descriptions. No more "This is a skill." filler. |

@@ -1,7 +1,7 @@
 import { describe, test, expect } from 'bun:test';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { detectSourceFormat, migrateSource } from '@agent-plugin-builder/sources';
+import { detectSourceFormat, migrateSource } from '@agent-plugins-builder/sources';
 
 describe('detectSourceFormat', () => {
   test('detects Claude project', () => {

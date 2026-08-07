@@ -2,12 +2,12 @@
 
 ## Overview
 
-Agent Plugin Builder is a monorepo with four packages:
+Agent Plugins Builder is a monorepo with four packages:
 
-- **@agent-plugin-builder/core**: Types, schemas, validation
-- **@agent-plugin-builder/generator**: Filesystem emission
-- **@agent-plugin-builder/sources**: Migration adapters
-- **@agent-plugin-builder/cli**: CLI interface
+- **@agent-plugins-builder/core**: Types, schemas, validation
+- **@agent-plugins-builder/generator**: Filesystem emission
+- **@agent-plugins-builder/sources**: Migration adapters
+- **@agent-plugins-builder/cli**: CLI interface
 
 ## Canonical Model
 

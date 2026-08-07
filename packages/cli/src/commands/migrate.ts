@@ -1,13 +1,13 @@
 import { Command } from 'commander';
 import * as path from 'node:path';
-import { detectSourceFormat, migrateSource, type SourceFormat } from '@agent-plugin-builder/sources';
-import { generatePlugin } from '@agent-plugin-builder/generator';
+import { detectSourceFormat, migrateSource, type SourceFormat } from '@agent-plugins-builder/sources';
+import { generatePlugin } from '@agent-plugins-builder/generator';
 
 export const migrateCommand = new Command('migrate')
   .description('Migrate from existing agent format to Agent Plugins')
   .argument('<source-dir>', 'Source directory to migrate')
   .option('--from <format>', 'Source format (claude, cursor, codex, opencode, vscode)')
-  .option('--output <dir>', 'Output directory', './agent-plugin')
+  .option('--output <dir>', 'Output directory', './agent-plugins')
   .option('--dry-run', 'Preview without writing')
   .option('--force', 'Overwrite existing files')
   .action(async (sourceDir: string, options: any) => {

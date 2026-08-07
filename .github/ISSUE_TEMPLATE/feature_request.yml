@@ -1,5 +1,5 @@
 name: Feature Request
-description: Suggest a feature for Agent Plugin Builder
+description: Suggest a feature for Agent Plugins Builder
 labels: ["enhancement"]
 body:
   - type: textarea

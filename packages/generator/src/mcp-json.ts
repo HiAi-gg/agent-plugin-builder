@@ -1,5 +1,5 @@
-import type { PortableMcpServer } from '@agent-plugin-builder/core';
-import { MCP_SCHEMA_URL } from '@agent-plugin-builder/core';
+import type { PortableMcpServer } from '@agent-plugins-builder/core';
+import { MCP_SCHEMA_URL } from '@agent-plugins-builder/core';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 

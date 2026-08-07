@@ -1,12 +1,12 @@
-# Contributing to Agent Plugin Builder
+# Contributing to Agent Plugins Builder
 
 Thank you for considering contributing. This document explains how to get started.
 
 ## Getting started locally
 
 ```bash
-git clone https://github.com/HiAi-gg/agent-plugin-builder.git
-cd agent-plugin-builder
+git clone https://github.com/HiAi-gg/agent-plugins-builder.git
+cd agent-plugins-builder
 bun install
 ```
 
@@ -22,9 +22,9 @@ bun run test
 
 ### Reporting bugs
 
-Open an issue at [github.com/HiAi-gg/agent-plugin-builder/issues](https://github.com/HiAi-gg/agent-plugin-builder/issues) and include:
+Open an issue at [github.com/HiAi-gg/agent-plugins-builder/issues](https://github.com/HiAi-gg/agent-plugins-builder/issues) and include:
 
-- Agent Plugin Builder version (run `agent-plugin --version`)
+- Agent Plugins Builder version (run `agent-plugins --version`)
 - Operating system and Bun version
 - Minimal reproduction steps or fixture
 - Command used and redacted output
