@@ -1,0 +1,38 @@
+packages/cli/src/index.ts
+  s_7c18c71902a5a6::t_cef507eb0a32e5 32
+packages/cli/package.json
+  s_7c18c71902a5a6::t_6292b24485cf93 3
+packages/npm/package.json
+  s_7c18c71902a5a6::t_6a498b95cf07bf 3
+packages/sources/package.json
+  s_7c18c71902a5a6::t_9d0ddf666e4503 3
+packages/generator/package.json
+  s_7c18c71902a5a6::t_cbf542efd5353b 3
+plugin.json
+  s_7c18c71902a5a6::t_50d15b56a71bb4 4
+CHANGELOG.md
+  s_7c18c71902a5a6::t_ad75318d59bfa5 10-20
+  s_7c18c71902a5a6::t_d964fdd6f7cf5e 111
+packages/core/package.json
+  s_7c18c71902a5a6::t_1216e151d54142 3
+package.json
+  s_7c18c71902a5a6::t_e059f7f1b4dbd9 3
+bun.lock
+  s_7c18c71902a5a6::t_9b66b5e8217e64 23,43,51,59,66
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "9cf4f5e0ec834f8cea968f0838ceb358f030308a",
+  "prompts": {},
+  "sessions": {
+    "s_7c18c71902a5a6": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_0221afccaffeQkdKetP6VXPwUs",
+        "model": "deepseek-v4-flash"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    }
+  }
+}
