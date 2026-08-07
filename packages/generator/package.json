@@ -1,6 +1,6 @@
 {
   "name": "@agent-plugins-builder/generator",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Filesystem generator for Agent Plugins Builder",
   "type": "module",
   "license": "MIT",

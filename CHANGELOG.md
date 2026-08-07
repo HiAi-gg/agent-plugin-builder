@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.7] — 2026-08-07
+
+### Changed
+
+- Renamed the project from `agent-plugin-builder` to `agent-plugins-builder`
+  - npm package: `@hiai-gg/agent-plugin-builder` → `@hiai-gg/agent-plugins-builder`
+  - Workspace packages: `@agent-plugin-builder/*` → `@agent-plugins-builder/*`
+  - CLI binary: `agent-plugin` → `agent-plugins`
+  - Bundled skill: `build-agent-plugin` → `build-agent-plugins`
+  - Default `migrate` output directory: `./agent-plugin` → `./agent-plugins`
+
 ## [0.0.6] — 2026-08-07
 
 ### Fixed
@@ -97,6 +108,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Documentation**: README, ARCHITECTURE.md, MIGRATION_SOURCES.md, AGENT_PLUGINS_SPEC_SUPPORT.md
 - **CI**: GitHub Actions workflow testing on Linux, macOS, and Windows
 
+[0.0.7]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.7
 [0.0.6]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.6
 [0.0.5]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.5
 [0.0.4]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.4

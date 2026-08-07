@@ -20,7 +20,7 @@
     },
     "packages/cli": {
       "name": "@agent-plugins-builder/cli",
-      "version": "0.0.6",
+      "version": "0.0.7",
       "bin": {
         "agent-plugins": "./bin/agent-plugins",
       },
@@ -40,7 +40,7 @@
     },
     "packages/core": {
       "name": "@agent-plugins-builder/core",
-      "version": "0.0.6",
+      "version": "0.0.7",
       "dependencies": {
         "yaml": "^2.9.0",
         "zod": "^3.23.0",
@@ -48,7 +48,7 @@
     },
     "packages/generator": {
       "name": "@agent-plugins-builder/generator",
-      "version": "0.0.6",
+      "version": "0.0.7",
       "dependencies": {
         "@agent-plugins-builder/core": "workspace:*",
         "yaml": "^2.9.0",
@@ -56,14 +56,14 @@
     },
     "packages/npm": {
       "name": "@hiai-gg/agent-plugins-builder",
-      "version": "0.0.6",
+      "version": "0.0.7",
       "bin": {
         "agent-plugins": "bin/cli.js",
       },
     },
     "packages/sources": {
       "name": "@agent-plugins-builder/sources",
-      "version": "0.0.6",
+      "version": "0.0.7",
       "dependencies": {
         "@agent-plugins-builder/core": "workspace:*",
       },
