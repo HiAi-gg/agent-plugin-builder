@@ -1,0 +1,48 @@
+{
+  "name": "agent-plugin-builder",
+  "version": "0.0.1",
+  "description": "Create, convert, and package portable Agent Plugins from existing agent setups, skills, and MCP servers",
+  "private": true,
+  "license": "MIT",
+  "author": {
+    "name": "HiAI",
+    "url": "https://github.com/HiAi-gg"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HiAi-gg/agent-plugin-builder.git"
+  },
+  "homepage": "https://github.com/HiAi-gg/agent-plugin-builder#readme",
+  "bugs": {
+    "url": "https://github.com/HiAi-gg/agent-plugin-builder/issues"
+  },
+  "keywords": [
+    "agent-plugins",
+    "agent-skills",
+    "mcp",
+    "model-context-protocol",
+    "ai-agents",
+    "developer-tools",
+    "cli",
+    "plugin-builder",
+    "plugin-migration",
+    "typescript",
+    "bun"
+  ],
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "build": "bun run --filter '*' build",
+    "typecheck": "bun run --filter '*' typecheck",
+    "test": "bun test",
+    "lint": "bunx --bun eslint ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/bun": "^1.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.66.0",
+    "@typescript-eslint/parser": "^8.66.0",
+    "eslint": "^10.8.0",
+    "globals": "^17.9.0",
+    "typescript": "^5.5.0"
+  }
+}

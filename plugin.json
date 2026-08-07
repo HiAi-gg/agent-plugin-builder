@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "agent-plugin-builder",
+  "version": "0.0.1",
+  "description": "Create, migrate, package, and inspect Agent Plugins",
+  "author": {
+    "name": "HiAI",
+    "url": "https://github.com/HiAi-gg"
+  },
+  "license": "MIT",
+  "keywords": ["agent-plugins", "builder", "cli", "migration", "scaffold"]
+}

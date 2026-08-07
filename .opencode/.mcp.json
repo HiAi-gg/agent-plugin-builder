@@ -1,0 +1,20 @@
+{
+  "_meta": {
+    "generatedBy": "hiai-opencode",
+    "version": 1,
+    "generatedAt": "2026-08-07T10:09:40.385Z"
+  },
+  "mcpServers": {
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "grep_app": {
+      "type": "http",
+      "url": "https://mcp.grep.app"
+    }
+  }
+}

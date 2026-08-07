@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Orca/Bob artifacts
+.bob/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Coverage
+coverage/
+
+# IDE
+.vscode/
+!.vscode/settings.json
+.idea/
