@@ -29,7 +29,6 @@
     "plugin-migration"
   ],
   "bin": {
-    "agent-plugin-builder": "./bin/cli.js",
     "agent-plugin": "./bin/cli.js"
   },
   "main": "./dist/index.js",
