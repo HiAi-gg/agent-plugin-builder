@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.6] — 2026-08-07
+
+### Fixed
+
+- CI release job now specifies `environment: npm-publish` to match npm trusted publisher config
+
 ## [0.0.5] — 2026-08-07
 
 ### Fixed
@@ -91,6 +97,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Documentation**: README, ARCHITECTURE.md, MIGRATION_SOURCES.md, AGENT_PLUGINS_SPEC_SUPPORT.md
 - **CI**: GitHub Actions workflow testing on Linux, macOS, and Windows
 
+[0.0.6]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.6
 [0.0.5]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.5
 [0.0.4]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.4
 [0.0.3]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.3
