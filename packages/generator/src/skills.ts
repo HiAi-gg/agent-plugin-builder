@@ -1,4 +1,5 @@
 import type { PortableSkill } from '@agent-plugin-builder/core';
+import YAML from 'yaml';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
@@ -32,22 +33,13 @@ export function generateSkillMd(skill: PortableSkill): string {
   if (skill.license) frontmatter.license = skill.license;
   if (skill.compatibility) frontmatter.compatibility = skill.compatibility;
   if (skill.metadata) frontmatter.metadata = skill.metadata;
-  if (skill.allowedTools) frontmatter['allowed-tools'] = skill.allowedTools;
+  if (skill.allowedTools) frontmatter['allowed-tools'] = skill.allowedTools.join(' ');
 
-  const yamlFrontmatter = Object.entries(frontmatter)
-    .map(([key, value]) => {
-      if (typeof value === 'string') {
-        return `${key}: ${JSON.stringify(value)}`;
-      }
-      if (Array.isArray(value)) {
-        return `${key}: ${JSON.stringify(value)}`;
-      }
-      if (typeof value === 'object') {
-        return `${key}: ${JSON.stringify(value)}`;
-      }
-      return `${key}: ${value}`;
-    })
-    .join('\n');
+  const yamlStr = YAML.stringify(frontmatter, {
+    lineWidth: 0, // don't wrap
+    defaultStringType: 'PLAIN',
+    defaultKeyType: 'PLAIN',
+  }).trim();
 
-  return `---\n${yamlFrontmatter}\n---\n\n${skill.body}\n`;
+  return `---\n${yamlStr}\n---\n\n${skill.body}\n`;
 }

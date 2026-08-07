@@ -5,6 +5,45 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [0.0.2] — 2026-08-07
+
+### Added
+
+- **Declarative config system**: `plugin.yml` / `agent-plugin.yml` — full authoring via config file
+- **Named MCP servers**: Server names preserved through the entire pipeline (config → generator → mcp.json)
+- **Complete MCP authoring**: `--mcp-name`, `--mcp-args`, `--mcp-env`, `--mcp-cwd` flags
+- **Multiple skills**: `--skill` (repeatable), `--skill-body-file`, `--skill-description`
+- **Combined plugins**: Skills + MCP in a single authoring flow (removed XOR split)
+- **Full manifest metadata**: `--version`, `--author-*`, `--homepage`, `--repository`, `--license`, `--keywords`
+- **README scaffold**: Generated with skills, MCP servers, license sections
+- **LICENSE generation**: MIT, Apache-2.0, ISC, BSD-2-Clause, BSD-3-Clause
+- **Real package artifacts**: `package --format zip` (default), `--format tar.gz`, `--format dir`
+- **Improved interactive init**: Full wizard with skills loop, MCP loop, preview, confirmation
+- **YAML serialization**: Proper YAML frontmatter for SKILL.md (not JSON-in-YAML)
+- **npm distribution**: `bunx agent-plugin-builder` and `npx agent-plugin-builder` work
+- **CI**: Release job builds and publishes `packages/npm` to the npm registry on version tags
+
+### Fixed
+
+- MCP server names no longer default to `server-1`, `server-2`
+- Skill frontmatter is valid YAML (not JSON-in-YAML)
+- Removed artificial skills-only XOR mcp-only split
+- Interactive init no longer produces hardcoded placeholder content
+- Global `--dry-run` and `--force` flags now work correctly on all commands
+
+### Changed
+
+- `init` command rewritten as a full interactive wizard
+- `create` command supports `--config <file>` for declarative authoring
+- `package` command produces zip/tar.gz archives by default
+- All migration adapters preserve MCP server names from source configs
+
+### Dogfood
+
+- 10/10 blind-test plugins (PostgreSQL, SQLite, Redis, Docker, Kubernetes, SSH, Filesystem, Git, REST API, OpenAPI) now buildable with zero manual editing
+
 ## [0.0.1] — 2026-08-07
 
 ### Added
@@ -29,4 +68,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Documentation**: README, ARCHITECTURE.md, MIGRATION_SOURCES.md, AGENT_PLUGINS_SPEC_SUPPORT.md
 - **CI**: GitHub Actions workflow testing on Linux, macOS, and Windows
 
+[0.0.2]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.2
 [0.0.1]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.1

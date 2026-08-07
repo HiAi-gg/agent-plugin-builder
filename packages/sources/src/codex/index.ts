@@ -43,6 +43,7 @@ function parseMcpServersFromToml(tomlContent: string): PortableMcpServer[] {
       const server: any = {
         type: 'stdio',
         command: commandMatch[1],
+        _name: serverName,
       };
 
       if (argsMatch) {
@@ -54,6 +55,7 @@ function parseMcpServersFromToml(tomlContent: string): PortableMcpServer[] {
       servers.push({
         type: 'streamable-http',
         url: urlMatch[1],
+        _name: serverName,
       });
     }
   }

@@ -98,7 +98,7 @@ export async function migrateClaudeProject(rootPath: string): Promise<ClaudeAdap
       const mcpContent = JSON.parse(fs.readFileSync(mcpJsonPath, 'utf-8'));
       if (mcpContent.mcpServers) {
         for (const [name, server] of Object.entries(mcpContent.mcpServers)) {
-          mcpServers.push(server as PortableMcpServer);
+          mcpServers.push({ ...(server as PortableMcpServer), _name: name });
         }
       }
       artifacts.push({

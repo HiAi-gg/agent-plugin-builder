@@ -44,6 +44,7 @@ function convertOpenCodeMcpToPortable(mcpConfig: any): PortableMcpServer[] {
         args,
         env: serverConfig.environment,
         cwd: serverConfig.cwd,
+        _name: name,
       });
     } else if (serverConfig.type === 'remote') {
       // Map 'remote' to 'streamable-http'
@@ -51,6 +52,7 @@ function convertOpenCodeMcpToPortable(mcpConfig: any): PortableMcpServer[] {
         type: 'streamable-http',
         url: serverConfig.url,
         headers: serverConfig.headers,
+        _name: name,
       });
     }
   }

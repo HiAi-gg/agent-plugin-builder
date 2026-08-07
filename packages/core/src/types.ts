@@ -11,6 +11,9 @@ export interface PortablePlugin {
   extensions: PortableExtension[];
   sourceArtifacts: SourceArtifact[];
   migrationWarnings: MigrationWarning[];
+  // Generator hints (not part of the plugin spec)
+  _generateReadme?: boolean; // generate a README.md scaffold
+  _licenseType?: string; // SPDX identifier for LICENSE generation
 }
 
 export interface PluginMetadata {
@@ -46,16 +49,19 @@ export type PortableMcpServer =
       args?: string[];
       env?: Record<string, string>;
       cwd?: string;
+      _name?: string; // server name preserved through the pipeline
     }
   | {
       type: 'streamable-http';
       url: string;
       headers?: Record<string, string>;
+      _name?: string; // server name preserved through the pipeline
     }
   | {
       type: 'sse';
       url: string;
       headers?: Record<string, string>;
+      _name?: string; // server name preserved through the pipeline
     };
 
 export interface PortableExtension {

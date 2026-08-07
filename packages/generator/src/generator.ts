@@ -5,12 +5,15 @@ import { writePluginJson } from './plugin-json.ts';
 import { writeMcpJson } from './mcp-json.ts';
 import { writeSkills } from './skills.ts';
 import { writeExtensions } from './extensions.ts';
+import { getLicenseText } from './licenses.ts';
 
 export interface GeneratePluginOptions {
   plugin: PortablePlugin;
   outputDir: string;
   dryRun?: boolean;
   force?: boolean;
+  generateReadme?: boolean;
+  licenseType?: string;
 }
 
 export interface GenerateResult {
@@ -21,6 +24,9 @@ export interface GenerateResult {
 
 export function generatePlugin(options: GeneratePluginOptions): GenerateResult {
   const { plugin, outputDir, dryRun = false, force = false } = options;
+
+  const generateReadme = options.generateReadme ?? plugin._generateReadme ?? false;
+  const licenseType = options.licenseType ?? plugin._licenseType;
 
   const filesCreated: string[] = [];
   const filesSkipped: string[] = [];
@@ -103,6 +109,31 @@ export function generatePlugin(options: GeneratePluginOptions): GenerateResult {
     }
   }
 
+  // Write README.md scaffold if requested
+  if (generateReadme) {
+    const readmePath = path.join(outputDir, 'README.md');
+    if (dryRun) {
+      filesCreated.push(readmePath);
+    } else {
+      fs.writeFileSync(readmePath, generateReadmeContent(plugin, licenseType), 'utf-8');
+      filesCreated.push(readmePath);
+    }
+  }
+
+  // Write LICENSE if a license type is requested
+  if (licenseType) {
+    const licensePath = path.join(outputDir, 'LICENSE');
+    if (dryRun) {
+      filesCreated.push(licensePath);
+    } else {
+      const holder =
+        plugin.metadata.author?.name || `${plugin.metadata.name} authors`;
+      const year = new Date().getFullYear();
+      fs.writeFileSync(licensePath, getLicenseText(licenseType, holder, year) + '\n', 'utf-8');
+      filesCreated.push(licensePath);
+    }
+  }
+
   // Add migration warnings
   warnings.push(...plugin.migrationWarnings.map((w) => w.message));
 
@@ -111,4 +142,67 @@ export function generatePlugin(options: GeneratePluginOptions): GenerateResult {
     filesSkipped,
     warnings,
   };
+}
+
+export function generateReadmeContent(plugin: PortablePlugin, licenseType?: string): string {
+  const { metadata } = plugin;
+  const lines: string[] = [];
+
+  lines.push(`# ${metadata.name}`);
+  lines.push('');
+  if (metadata.description) {
+    lines.push(metadata.description);
+    lines.push('');
+  }
+
+  lines.push('## Overview');
+  lines.push('');
+  lines.push('An Agent Plugin generated with [Agent Plugin Builder](https://agent-plugins.org/).');
+  lines.push('');
+
+  lines.push('## Contents');
+  lines.push('');
+  lines.push('- `plugin.json` — plugin manifest');
+  if (plugin.skills.length > 0) lines.push('- `skills/` — skills');
+  if (plugin.mcpServers.length > 0) lines.push('- `mcp.json` — MCP servers');
+  if (plugin.extensions.length > 0) lines.push('- `extensions/` — extension data');
+  if (plugin.instructions) lines.push('- `AGENTS.md` — shared instructions');
+  lines.push('');
+
+  if (plugin.skills.length > 0) {
+    lines.push('## Skills');
+    lines.push('');
+    plugin.skills.forEach((skill) => {
+      lines.push(`- \`${skill.name}\` — ${skill.description}`);
+    });
+    lines.push('');
+  }
+
+  if (plugin.mcpServers.length > 0) {
+    lines.push('## MCP Servers');
+    lines.push('');
+    plugin.mcpServers.forEach((server) => {
+      const name = server._name || `${server.type} server`;
+      lines.push(`- \`${name}\` — ${server.type}`);
+    });
+    lines.push('');
+  }
+
+  if (metadata.homepage || metadata.repository) {
+    lines.push('## Links');
+    lines.push('');
+    if (metadata.homepage) lines.push(`- Homepage: ${metadata.homepage}`);
+    if (metadata.repository) lines.push(`- Repository: ${metadata.repository}`);
+    lines.push('');
+  }
+
+  const effectiveLicense = licenseType ?? metadata.license;
+  if (effectiveLicense) {
+    lines.push('## License');
+    lines.push('');
+    lines.push(`Licensed under the ${effectiveLicense} license.`);
+    lines.push('');
+  }
+
+  return lines.join('\n');
 }

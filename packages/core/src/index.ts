@@ -9,6 +9,9 @@ export * from './schemas/skill';
 // Spec
 export * from './spec/index';
 
+// Config
+export * from './config';
+
 // Utilities
 export * from './path';
 export * from './env';

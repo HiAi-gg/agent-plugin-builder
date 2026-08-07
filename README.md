@@ -17,7 +17,8 @@ Agent Plugin Builder converts between these formats and the portable [Agent Plug
 ## Quick Start
 
 ```bash
-# Install globally
+# Install globally (npm or bun)
+npm install -g agent-plugin-builder
 bun install -g agent-plugin-builder
 
 # Create a new plugin interactively
@@ -26,8 +27,8 @@ agent-plugin init
 # Migrate from an existing agent setup
 agent-plugin migrate ./my-project
 
-# Validate and package
-agent-plugin package ./my-plugin
+# Validate and package as an archive
+agent-plugin package ./my-plugin --output ./dist
 ```
 
 Or run without installing:
@@ -42,9 +43,74 @@ bunx agent-plugin-builder migrate ./my-project --from claude
 ### Create plugins from scratch
 
 ```bash
+# From a declarative config file (supports skills, MCP, metadata, README, LICENSE)
+agent-plugin create --config plugin.yml --output ./my-plugin
+
+# From flags — combine skills and MCP in one plugin
+agent-plugin create --name project-memory \
+  --skill create-plan --skill report-progress \
+  --mcp-type stdio --mcp-command "node server.js" --mcp-name my-server \
+  --version 0.1.0 --author-name "Jane Doe" --license MIT
+
+# Legacy single-purpose forms
 agent-plugin create --name project-memory --skills-only
 agent-plugin create --name my-mcp-plugin --mcp-only --mcp-type stdio --mcp-command "node server.js"
 ```
+
+Example `plugin.yml`:
+
+```yaml
+name: my-plugin
+version: 0.1.0
+description: A test plugin
+author:
+  name: Test Author
+license: MIT
+skills:
+  - name: test-skill
+    description: A test skill
+    body: |
+      # Test Skill
+      This is the body.
+mcp:
+  my-server:
+    type: stdio
+    command: node
+    args: [server.js]
+readme: true
+license-file: MIT
+```
+
+### Interactive wizard
+
+`init` walks you through creating a plugin step by step — metadata, skills (add as
+many as you like), MCP servers (stdio, streamable-http, or sse), README/LICENSE,
+and output directory — then previews the files before generating:
+
+```bash
+agent-plugin init
+```
+
+All prompts have sensible defaults you can accept with Enter. The plugin name is
+validated against the Agent Plugins name pattern. A skill body file is optional —
+press Enter to get a template body.
+
+Non-interactive / CI usage:
+
+```bash
+# Use defaults (one example skill, README + LICENSE)
+agent-plugin init --yes --name my-plugin
+
+# Same as --yes
+agent-plugin init --non-interactive --name my-plugin
+
+# Declarative config — no prompts at all
+agent-plugin init --config plugin.yml
+```
+
+`--yes` / `--non-interactive` also accept `--description`, `--version`,
+`--author-name`, `--author-email`, and `--license` flags. The output directory
+defaults to `./<plugin-name>` (or the positional argument).
 
 ### Migrate from existing agent setups
 
@@ -78,20 +144,22 @@ Unsupported:
 ### Validate and inspect plugins
 
 ```bash
-agent-plugin package ./my-plugin          # validate against official schemas
+agent-plugin package ./my-plugin          # validate and package as <name>.zip
+agent-plugin package ./my-plugin --format tar.gz --output ./dist   # gzipped tarball
+agent-plugin package ./my-plugin --format dir --output ./dist      # directory copy
 agent-plugin inspect ./my-plugin          # show structure
 agent-plugin inspect ./my-plugin --json   # machine-readable output
 ```
 
 ## Supported Migration Sources
 
-| Source | Detection | Portable components | Status |
-|---|---|---|---|
-| Claude Code | `CLAUD.md` or `.claude/` | Skills, MCP, instructions | Supported |
-| Cursor | `.cursor/` | Skills, MCP | Supported |
-| Codex | `AGENTS.md` or `config.toml` | Instructions, MCP (TOML) | Supported |
-| OpenCode | `AGENTS.md` or `.opencode/` | Skills, MCP, instructions | Supported |
-| VS Code / Copilot | `.github/` or `.vscode/` | Skills, MCP, instructions | Supported |
+| Source            | Detection                    | Portable components       | Status    |
+| ----------------- | ---------------------------- | ------------------------- | --------- |
+| Claude Code       | `CLAUD.md` or `.claude/`     | Skills, MCP, instructions | Supported |
+| Cursor            | `.cursor/`                   | Skills, MCP               | Supported |
+| Codex             | `AGENTS.md` or `config.toml` | Instructions, MCP (TOML)  | Supported |
+| OpenCode          | `AGENTS.md` or `.opencode/`  | Skills, MCP, instructions | Supported |
+| VS Code / Copilot | `.github/` or `.vscode/`     | Skills, MCP, instructions | Supported |
 
 See [Migration Sources](docs/MIGRATION_SOURCES.md) for details on what each adapter migrates and what it cannot.
 
@@ -107,13 +175,13 @@ MCP server configuration follows the [Model Context Protocol](https://modelconte
 
 Agent Plugins v1.0.0 is supported by:
 
-| Client | Skills | MCP transports |
-|---|---|---|
-| VS Code | ✅ | stdio, Streamable HTTP, SSE |
-| Cursor | ✅ | stdio, Streamable HTTP, SSE |
-| GitHub Copilot | ✅ | stdio, Streamable HTTP, SSE |
-| ChatGPT & Codex | ✅ | stdio, Streamable HTTP |
-| Kiro | ✅ | stdio, Streamable HTTP, SSE |
+| Client          | Skills | MCP transports              |
+| --------------- | ------ | --------------------------- |
+| VS Code         | ✅     | stdio, Streamable HTTP, SSE |
+| Cursor          | ✅     | stdio, Streamable HTTP, SSE |
+| GitHub Copilot  | ✅     | stdio, Streamable HTTP, SSE |
+| ChatGPT & Codex | ✅     | stdio, Streamable HTTP      |
+| Kiro            | ✅     | stdio, Streamable HTTP, SSE |
 
 See [Compatibility](docs/COMPATIBILITY.md) for details and evidence levels.
 

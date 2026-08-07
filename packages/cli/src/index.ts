@@ -10,8 +10,7 @@ export function run() {
 
   program
     .name('agent-plugin')
-    .description('Create, migrate, package, and inspect Agent Plugins')
-    .version('0.0.1');
+    .description('Create, migrate, package, and inspect Agent Plugins');
 
   // Global flags
   program.option('--dry-run', 'Show what would be done without making changes');
@@ -24,6 +23,15 @@ export function run() {
   program.addCommand(migrateCommand);
   program.addCommand(inspectCommand);
   program.addCommand(packageCommand);
+
+  // Handle the top-level version flag manually. commander's .version() registers
+  // a program-level `--version` option that would otherwise intercept the
+  // `create --version <version>` flag before it reaches the subcommand.
+  const args = process.argv.slice(2);
+  if (args.length === 1 && (args[0] === '--version' || args[0] === '-V')) {
+    console.log('0.0.2');
+    process.exit(0);
+  }
 
   program.parse();
 }

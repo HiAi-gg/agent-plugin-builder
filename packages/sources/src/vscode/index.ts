@@ -122,18 +122,21 @@ export async function migrateVscodeProject(rootPath: string): Promise<VscodeAdap
               args: serverConfig.args,
               env: serverConfig.env,
               cwd: serverConfig.cwd,
+              _name: name,
             });
           } else if (serverConfig.type === 'http' || serverConfig.type === 'streamable-http') {
             mcpServers.push({
               type: 'streamable-http',
               url: serverConfig.url,
               headers: serverConfig.headers,
+              _name: name,
             });
           } else if (serverConfig.type === 'sse') {
             mcpServers.push({
               type: 'sse',
               url: serverConfig.url,
               headers: serverConfig.headers,
+              _name: name,
             });
           }
         }
