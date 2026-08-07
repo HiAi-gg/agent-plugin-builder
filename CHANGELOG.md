@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Real package artifacts**: `package --format zip` (default), `--format tar.gz`, `--format dir`
 - **Improved interactive init**: Full wizard with skills loop, MCP loop, preview, confirmation
 - **YAML serialization**: Proper YAML frontmatter for SKILL.md (not JSON-in-YAML)
-- **npm distribution**: `bunx agent-plugin-builder` and `npx agent-plugin-builder` work
+- **npm distribution**: `bunx @hiai-gg/agent-plugin-builder` and `npx @hiai-gg/agent-plugin-builder` work
 - **CI**: Release job builds and publishes `packages/npm` to the npm registry on version tags
 
 ### Fixed

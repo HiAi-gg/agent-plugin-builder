@@ -3,7 +3,7 @@
 Create, convert, and package portable Agent Plugins from existing agent setups, skills, and MCP servers.
 
 [![CI](https://github.com/HiAi-gg/agent-plugin-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/HiAi-gg/agent-plugin-builder/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/agent-plugin-builder)](https://www.npmjs.com/package/agent-plugin-builder)
+[![npm](https://img.shields.io/npm/v/@hiai-gg/agent-plugin-builder)](https://www.npmjs.com/package/@hiai-gg/agent-plugin-builder)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue)](https://www.typescriptlang.org/)
 [![Bun](https://img.shields.io/badge/Runtime-Bun-black)](https://bun.sh/)
@@ -18,8 +18,8 @@ Agent Plugin Builder converts between these formats and the portable [Agent Plug
 
 ```bash
 # Install globally (npm or bun)
-npm install -g agent-plugin-builder
-bun install -g agent-plugin-builder
+npm install -g @hiai-gg/agent-plugin-builder
+bun install -g @hiai-gg/agent-plugin-builder
 
 # Create a new plugin interactively
 agent-plugin init
@@ -34,8 +34,8 @@ agent-plugin package ./my-plugin --output ./dist
 Or run without installing:
 
 ```bash
-bunx agent-plugin-builder init
-bunx agent-plugin-builder migrate ./my-project --from claude
+bunx @hiai-gg/agent-plugin-builder init
+bunx @hiai-gg/agent-plugin-builder migrate ./my-project --from claude
 ```
 
 ## What It Does
