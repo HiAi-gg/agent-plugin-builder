@@ -1,0 +1,19 @@
+README.md
+  s_8a0243e43b34ec::t_bc2894365a6a1e 4-5,14,20-21,36-37,167
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "c30679611c1e5b8a48da7513fe024c0e5e4ab926",
+  "prompts": {},
+  "sessions": {
+    "s_8a0243e43b34ec": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_021eba216ffel1to1fvj0Erl7I",
+        "model": "longcat-2.0-free"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    }
+  }
+}
