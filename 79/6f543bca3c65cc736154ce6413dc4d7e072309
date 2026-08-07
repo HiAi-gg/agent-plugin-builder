@@ -1,0 +1,21 @@
+package.json
+  s_37a481d6949e20::t_2e0f69fb3fa96d 40-43
+bun.lock
+  s_37a481d6949e20::t_afea4ac89e0405 8-11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "796f543bca3c65cc736154ce6413dc4d7e072309",
+  "prompts": {},
+  "sessions": {
+    "s_37a481d6949e20": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_023dd4f5affeJfWc7MiSo1fFt5",
+        "model": "deepseek-v4-flash"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    }
+  }
+}
