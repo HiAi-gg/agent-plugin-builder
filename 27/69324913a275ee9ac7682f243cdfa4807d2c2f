@@ -1,0 +1,19 @@
+bun.lock
+  s_4618e5febfe230::t_a6794a8ef3a7b1 58,97-98
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "2769324913a275ee9ac7682f243cdfa4807d2c2f",
+  "prompts": {},
+  "sessions": {
+    "s_4618e5febfe230": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_0227b9b21ffemJdCSKshYL3SrH",
+        "model": "longcat-2.0-free"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    }
+  }
+}
