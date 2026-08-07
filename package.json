@@ -1,6 +1,6 @@
 {
   "name": "agent-plugin-builder",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Create, convert, and package portable Agent Plugins from existing agent setups, skills, and MCP servers",
   "private": true,
   "license": "MIT",

@@ -1,6 +1,6 @@
 {
   "name": "@agent-plugin-builder/sources",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Migration adapters for Agent Plugin Builder",
   "type": "module",
   "license": "MIT",
