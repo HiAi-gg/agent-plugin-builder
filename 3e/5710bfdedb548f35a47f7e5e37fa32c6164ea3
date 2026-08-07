@@ -1,0 +1,21 @@
+.github/workflows/ci.yml
+  s_72d014bf6a3fe1::t_688f4773d0f557 42-43,47,49-50
+MEMORY.md
+  s_72d014bf6a3fe1::t_0f70f361d6b2b1 18-19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "3e5710bfdedb548f35a47f7e5e37fa32c6164ea3",
+  "prompts": {},
+  "sessions": {
+    "s_72d014bf6a3fe1": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_0224deb6fffefZpYN7tDSqpB97",
+        "model": "longcat-2.0-free"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    }
+  }
+}
