@@ -1,0 +1,25 @@
+packages/npm/package.json
+  s_f8c97286347e81::t_9c6a97c6b01518 2
+README.md
+  s_f8c97286347e81::t_790e1b3b073dda 6
+  s_f8c97286347e81::t_545a9bb07ad637 21-22
+  s_f8c97286347e81::t_4a3242a8ebf901 37-38
+CHANGELOG.md
+  s_f8c97286347e81::t_13d29f980482a9 25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "7dea514e057406750a8bd052b594d55f4e76ee48",
+  "prompts": {},
+  "sessions": {
+    "s_f8c97286347e81": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_022813f4fffek1woXKe5WjYGN5",
+        "model": "longcat-2.0-free"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    }
+  }
+}
