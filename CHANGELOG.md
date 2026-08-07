@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.5] — 2026-08-07
+
+### Fixed
+
+- OIDC trusted publishing configuration for npm registry releases
+
 ## [0.0.4] — 2026-08-07
 
 ### Fixed
@@ -85,6 +91,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Documentation**: README, ARCHITECTURE.md, MIGRATION_SOURCES.md, AGENT_PLUGINS_SPEC_SUPPORT.md
 - **CI**: GitHub Actions workflow testing on Linux, macOS, and Windows
 
+[0.0.5]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.5
 [0.0.4]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.4
 [0.0.3]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.3
 [0.0.2]: https://github.com/HiAi-gg/agent-plugin-builder/releases/tag/v0.0.2

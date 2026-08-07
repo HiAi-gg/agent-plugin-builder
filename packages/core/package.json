@@ -1,6 +1,6 @@
 {
   "name": "@agent-plugin-builder/core",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Core types, schemas, and validation for Agent Plugin Builder",
   "type": "module",
   "license": "MIT",
