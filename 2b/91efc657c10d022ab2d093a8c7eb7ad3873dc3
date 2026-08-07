@@ -1,0 +1,146 @@
+README.md
+  s_79aaa30c797fb5::t_6acfb91ae972f3 147-149
+  s_c38ea946d06f9f::t_b9476462beef06 156-162,178-184
+  s_f7c6bae5f72e9d::t_3fe41b68a43ea2 46-55,60-81
+  s_79aaa30c797fb5::t_c518ffe8a58dc2 30-31
+  s_1ad5fd7f1007cd::t_90ad3cda41dd93 20-21
+  s_c38ea946d06f9f::t_f8ef12fc90f72a 82,84-114
+  s_c38ea946d06f9f::t_1f5cc4873a7efb 83
+packages/generator/src/mcp-json.ts
+  s_f7c6bae5f72e9d::t_bbab6697180e51 15,21-24,33-58
+tests/cli/commands.test.ts
+  s_f7c6bae5f72e9d::t_5f98268968543a 26,104,107,109-131,133,135-137,139-140,148-149,154-157,160-162,164-165,178-181,184-187,189-191,193,195,198,202-204
+  s_c38ea946d06f9f::t_b9476462beef06 9-11,13-14,18-19,21-22,78,80,84-85,87,142,144,150,152,166,168-169,171,173-174,176
+  s_79aaa30c797fb5::t_59923972b0f74f 91,205-287,289
+  s_c38ea946d06f9f::t_ebd0f29f87c7ca 17,27-28,31-32,34,43,45-67,69,71-73,75-76,89-90
+  s_c38ea946d06f9f::t_62fca9564cba0c 7,12,16,20,23-24,29-30,33,41-42,44,68,70,74,77,79,81-83,86,88,97,105-106,108,132,134,138,141,143,145-147,151,153,158-159,163,167,170,172,175,177,182-183,188,192,194,196-197,199-201
+  s_79aaa30c797fb5::t_cb9b88d9791600 288
+  s_17fcdfd055a1b5::t_f066f44d7f2927 15,25,92
+docs/BLIND_TEST_V0_0_1_RESPONSE.md
+  s_d4543c33fe820d::t_dcf156c2c56f8c 1-51
+packages/core/src/config.ts
+  s_f7c6bae5f72e9d::t_f6247aa6c5e8d2 1-158
+packages/generator/src/licenses.ts
+  s_f7c6bae5f72e9d::t_9f450851d69a7e 1-334
+packages/core/src/types.ts
+  s_f7c6bae5f72e9d::t_9ea18891f22995 14-16
+  s_f7c6bae5f72e9d::t_1541e6dafef5b6 52,58,64
+packages/sources/src/codex/index.ts
+  s_f7c6bae5f72e9d::t_f0b4f4c601ed89 46,58
+tests/core/config.test.ts
+  s_f7c6bae5f72e9d::t_d568c990c367d5 1-151
+packages/sources/src/claude/index.ts
+  s_f7c6bae5f72e9d::t_284fbe87029ff1 101
+packages/generator/package.json
+  s_f7c6bae5f72e9d::t_840e16684b1255 19-20
+packages/cli/src/commands/package.ts
+  s_79aaa30c797fb5::t_9651b77753671e 183-189
+  s_79aaa30c797fb5::t_857ab42652fd30 1,4,7-34,36-37,39-53,55-56,58-69,71-84,87-90,92-94,96-109,111,114-115,118-182,190-197,213-216,218-233,235-245
+packages/npm/.npmrc
+  s_1ad5fd7f1007cd::t_4b1c2c7f0441d4 1
+packages/sources/src/vscode/index.ts
+  s_f7c6bae5f72e9d::t_f3ddfff1ef9ea4 125,132,139
+packages/sources/src/opencode/index.ts
+  s_f7c6bae5f72e9d::t_004c7e1c5c983e 47,55
+packages/generator/src/generator.ts
+  s_f7c6bae5f72e9d::t_5c3ab2d7b34f61 8,15-16,28-30,112-136,146-207
+  s_17fcdfd055a1b5::t_529546689cdeba 208
+packages/npm/package.json
+  s_1ad5fd7f1007cd::t_f6c1f49e27c035 1-45
+CHANGELOG.md
+  s_79aaa30c797fb5::t_c55c6ac713d943 8-9,12-13,27
+  s_d4543c33fe820d::t_0b701e41ab0359 10-11,14-26,28,30-43,45
+  s_1ad5fd7f1007cd::t_4ca6a00cd5be0a 71
+  s_1ad5fd7f1007cd::t_1eb9061d034075 29,44,46
+packages/generator/src/skills.ts
+  s_f7c6bae5f72e9d::t_4d25b47e77b1f5 2,36-44
+packages/cli/package.json
+  s_1ad5fd7f1007cd::t_9077f75cdb785c 3
+  s_79aaa30c797fb5::t_e9ccd57130f11d 13-15,29-31,33
+MEMORY.md
+  s_c38ea946d06f9f::t_cb0a273175fb59 27-31
+  s_f7c6bae5f72e9d::t_f4c7533e2e4cd0 19-26
+  s_1ad5fd7f1007cd::t_155691993ecb55 11-18
+tests/generator/generator.test.ts
+  s_f7c6bae5f72e9d::t_f19bbad4fd234f 47-140
+  s_f7c6bae5f72e9d::t_d78c7bcf740d68 4
+packages/core/package.json
+  s_f7c6bae5f72e9d::t_5fb5fc23d71726 19
+.github/workflows/ci.yml
+  s_1ad5fd7f1007cd::t_68cd14026f4bf0 34,42-47
+packages/cli/src/commands/create.ts
+  s_f7c6bae5f72e9d::t_1f6c8403ed6b0f 15-17
+  s_f7c6bae5f72e9d::t_0209f608e1243b 4-8,11-14,18-66,68-85,88-90,92-93,97-113,117-126,129-135,137-154,156-158,160-165,167,171-172,174-175,179
+packages/sources/src/cursor/index.ts
+  s_f7c6bae5f72e9d::t_9029d199d99f7c 85
+packages/core/src/index.ts
+  s_f7c6bae5f72e9d::t_e0dfaab3e1dd74 12-14
+packages/npm/bin/cli.js
+  s_1ad5fd7f1007cd::t_83ebeb0152efcc 1-4
+packages/cli/src/index.ts
+  s_f7c6bae5f72e9d::t_3fadf281541f16 13,27-34
+  s_17fcdfd055a1b5::t_3e2466eceb28c6 35
+packages/cli/src/commands/init.ts
+  s_c38ea946d06f9f::t_56ac6164ab26df 6-10,12-16,24-29,31-48,50-53,55-60,62-65,67-72,74-78,82-84,87,91,95-111,113,115-139,142-165,167-179,187-191,210,212-217,221-222,224-228,234-235,243-249,253-254,262-266,271,278-279,282,284,286-287,289-290,298,302-303,308-310,312-313,315-318,320-323,329-330,332-335,337,345-347,349-353,355-356,358-363,367-370,374,393,400,402-408,421,425-427,429-445,515
+  s_c38ea946d06f9f::t_b9476462beef06 79-81,88-90,92-94,140-141,180,184-186,196,202,211,218-220,229-233,236,240-242,250-252,255,259-261,283,291,295,297,306,311,327,331,338,342-344,354,375-376,380-382,387-388,394,398-399,401,409,413-415,419-420,428,455,458,461-474,477-478,480-488,490-491,493-495,497-503,507-511,513-514,517-524
+  s_c38ea946d06f9f::t_62fca9564cba0c 5,11,17,19-23,30,49,54,61,66,73,85-86,112,114,166,181-183,195,201,203,206-208,223,237-239,256-258,268-270,274-277,280,288,292-294,296,299-301,304-305,307,314,324-326,328,339-341,357,364-366,371-373,377-379,383-386,389-392,395-397,410-412,416-418,422-424,446-454,456-457,459-460,496,504-506,512
+  s_c38ea946d06f9f::t_a9b9d6687d87f0 273,281
+bun.lock
+  s_79aaa30c797fb5::t_21f232b1cd6453 23,31-32,45,54-62,108-109,122-123,144-145,150-151,154-159,162-173,176-179,186-193,218-223,226-227,246-247,252-253,258-261,274-275,286-287,302-305,310-315,324-333,346-347,352-353,356-357,363-368
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "2b91efc657c10d022ab2d093a8c7eb7ad3873dc3",
+  "prompts": {},
+  "sessions": {
+    "s_17fcdfd055a1b5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_022ca22d5ffe9ceayxbswU5AI0",
+        "model": "deepseek-v4-flash"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    },
+    "s_1ad5fd7f1007cd": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_022bd62acffe8KPStEV06JtonQ",
+        "model": "deepseek-v4-flash"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    },
+    "s_79aaa30c797fb5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_022afb473ffeJQCwFkIs1fUXLD",
+        "model": "deepseek-v4-flash"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    },
+    "s_c38ea946d06f9f": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_022afdfe0ffeYKwLr9Ah5pbkGC",
+        "model": "deepseek-v4-flash"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    },
+    "s_d4543c33fe820d": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_022a2a674ffe3vSYxPWfD7lBC2",
+        "model": "longcat-2.0-free"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    },
+    "s_f7c6bae5f72e9d": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_022b8ffc3ffemBVJ8qWA207e77",
+        "model": "deepseek-v4-flash"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    }
+  }
+}
