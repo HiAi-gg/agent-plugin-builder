@@ -46,6 +46,8 @@ jobs:
         run: npm install -g npm@latest
       - run: bun install --frozen-lockfile
       - run: bun run build
+      - name: Copy README and LICENSE to npm package
+        run: cp README.md packages/npm/README.md && cp LICENSE packages/npm/LICENSE
       - name: Publish to npm
         working-directory: packages/npm
-        run: npm publish --access public --provenance --ignore-scripts
+        run: npm publish --access public --provenance
