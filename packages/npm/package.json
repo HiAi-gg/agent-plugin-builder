@@ -39,6 +39,6 @@
   },
   "scripts": {
     "build": "bun build ../cli/src/index.ts --outdir ./dist --target node",
-    "prepack": "bun run build"
+    "prepack": "bun run build && cp ../../README.md ./README.md && cp ../../LICENSE ./LICENSE"
   }
 }
