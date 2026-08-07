@@ -1,0 +1,19 @@
+.github/workflows/ci.yml
+  s_a7c22f2e673aeb::t_50b915bb9aea6a 34,43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "a18245ddac6da7584e794fa514989eab656d3fcb",
+  "prompts": {},
+  "sessions": {
+    "s_a7c22f2e673aeb": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_02276101affeOvyZQp9nxqquTU",
+        "model": "longcat-2.0-free"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    }
+  }
+}
