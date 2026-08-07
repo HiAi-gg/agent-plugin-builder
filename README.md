@@ -2,7 +2,7 @@
 
 Create, convert, and package portable Agent Plugins from existing agent setups, skills, and MCP servers.
 [![CI](https://github.com/HiAi-gg/agent-plugins-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/HiAi-gg/agent-plugins-builder/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/@hiai-gg/agent-pluginss-builder)](https://www.npmjs.com/package/@hiai-gg/agent-pluginss-builder)
+[![npm](https://img.shields.io/npm/v/@hiai-gg/agent-plugins-builder)](https://www.npmjs.com/package/@hiai-gg/agent-plugins-builder)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue)](https://www.typescriptlang.org/)
 [![Bun](https://img.shields.io/badge/Runtime-Bun-black)](https://bun.sh/)
@@ -11,14 +11,14 @@ Create, convert, and package portable Agent Plugins from existing agent setups, 
 
 The Agent Plugins ecosystem is growing. Multiple AI coding agents — VS Code, Cursor, GitHub Copilot, ChatGPT/Codex, Claude Code, OpenCode — each have their own configuration formats for skills, instructions, and MCP servers.
 
-Agent Plugins Builder converts between these formats and the portable [Agent Plugins](https://agent-pluginss.org/) standard, so you can write once and use across compatible clients.
+Agent Plugins Builder converts between these formats and the portable [Agent Plugins](https://agent-plugins.org/) standard, so you can write once and use across compatible clients.
 
 ## Quick Start
 
 ```bash
 # Install globally (npm or bun)
-npm install -g @hiai-gg/agent-pluginss-builder
-bun install -g @hiai-gg/agent-pluginss-builder
+npm install -g @hiai-gg/agent-plugins-builder
+bun install -g @hiai-gg/agent-plugins-builder
 
 # Create a new plugin interactively
 agent-plugins init
@@ -33,8 +33,8 @@ agent-plugins package ./my-plugin --output ./dist
 Or run without installing:
 
 ```bash
-bunx @hiai-gg/agent-pluginss-builder init
-bunx @hiai-gg/agent-pluginss-builder migrate ./my-project --from claude
+bunx @hiai-gg/agent-plugins-builder init
+bunx @hiai-gg/agent-plugins-builder migrate ./my-project --from claude
 ```
 
 ## What It Does
@@ -164,7 +164,7 @@ See [Migration Sources](docs/MIGRATION_SOURCES.md) for details on what each adap
 
 ## Standards
 
-This project targets the [Agent Plugins specification v1.0.0](https://agent-pluginss.org/) (Working Draft).
+This project targets the [Agent Plugins specification v1.0.0](https://agent-plugins.org/) (Working Draft).
 
 Agent Plugin Skills follow the [Agent Skills specification](https://agentskills.io/specification).
 
