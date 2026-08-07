@@ -1,0 +1,19 @@
+packages/npm/bin/cli.js
+  s_6d34663dbb903a::t_defdefe0917d07 2-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "02dd162a78075bbdeb77904c3b6b002febc20e0d",
+  "prompts": {},
+  "sessions": {
+    "s_6d34663dbb903a": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_0227db1e3ffesEN4UbejCO07WW",
+        "model": "longcat-2.0-free"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    }
+  }
+}
