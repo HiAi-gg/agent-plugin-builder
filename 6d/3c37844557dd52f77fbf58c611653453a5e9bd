@@ -1,0 +1,36 @@
+packages/cli/package.json
+  s_e783e28e549b50::t_24bae49e9d90ac 3
+packages/sources/package.json
+  s_e783e28e549b50::t_046e6200a56cea 3
+package.json
+  s_e783e28e549b50::t_449ffb2e35c4e7 3
+packages/generator/package.json
+  s_e783e28e549b50::t_f72c61599d637c 3
+packages/core/package.json
+  s_e783e28e549b50::t_f72bf71f061359 3
+packages/npm/package.json
+  s_e783e28e549b50::t_265c11d96391fe 3
+plugin.json
+  s_e783e28e549b50::t_8a584789e059a0 4
+packages/cli/src/index.ts
+  s_e783e28e549b50::t_97c7f79c5bd861 32
+CHANGELOG.md
+  s_e783e28e549b50::t_239375655bda44 117
+  s_e783e28e549b50::t_03a208b80387cf 10-15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "6d3c37844557dd52f77fbf58c611653453a5e9bd",
+  "prompts": {},
+  "sessions": {
+    "s_e783e28e549b50": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_021f5fc8bffeH6lzl5ACidJOk6",
+        "model": "longcat-2.0-free"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    }
+  }
+}
