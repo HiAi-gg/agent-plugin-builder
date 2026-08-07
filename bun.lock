@@ -5,6 +5,10 @@
     "": {
       "name": "agent-plugin-builder",
       "devDependencies": {
+        "@agent-plugin-builder/cli": "workspace:*",
+        "@agent-plugin-builder/core": "workspace:*",
+        "@agent-plugin-builder/generator": "workspace:*",
+        "@agent-plugin-builder/sources": "workspace:*",
         "@eslint/js": "^10.0.1",
         "@types/bun": "^1.1.0",
         "@typescript-eslint/eslint-plugin": "^8.66.0",
