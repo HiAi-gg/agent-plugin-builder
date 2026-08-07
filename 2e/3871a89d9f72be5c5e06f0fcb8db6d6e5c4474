@@ -1,0 +1,129 @@
+skills/build-agent-plugins/SKILL.md
+  s_7c18c71902a5a6::t_b9c04bd7895d29 6
+  s_7c18c71902a5a6::t_df2f7b5969eaa5 24-75
+  s_7c18c71902a5a6::t_f749d885b4ae65 2
+packages/generator/src/mcp-json.ts
+  s_7c18c71902a5a6::t_f18fa159024fa1 1-2
+packages/sources/package.json
+  s_7c18c71902a5a6::t_d36171d7198bd7 4
+  s_7c18c71902a5a6::t_11d2d2b5386767 9
+  s_7c18c71902a5a6::t_8300a47231e997 19
+  s_7c18c71902a5a6::t_d063af6e87e0f9 2
+packages/sources/src/index.ts
+  s_7c18c71902a5a6::t_3ad8485329a836 14
+packages/sources/src/claude/index.ts
+  s_7c18c71902a5a6::t_4f524da61583db 9-10
+packages/npm/package.json
+  s_7c18c71902a5a6::t_080a4d52d500d3 32
+  s_7c18c71902a5a6::t_0e0d3b3b82391b 13,16,18
+  s_7c18c71902a5a6::t_c409779f54ab89 2
+tests/sources/adapters.test.ts
+  s_7c18c71902a5a6::t_f2236e397feef3 4
+packages/cli/src/commands/package.ts
+  s_7c18c71902a5a6::t_a5979c661ab781 5
+packages/cli/src/commands/migrate.ts
+  s_7c18c71902a5a6::t_d8677cd321689d 10
+  s_7c18c71902a5a6::t_9da71c0d88d078 3-4
+package.json
+  s_7c18c71902a5a6::t_46d37d6af71e3b 2
+  s_7c18c71902a5a6::t_7c87de75caad8a 13,15,17
+  s_7c18c71902a5a6::t_274602abb8181e 40-43
+packages/sources/src/codex/index.ts
+  s_7c18c71902a5a6::t_72aa453d1c59d1 9-10
+packages/generator/src/generator.ts
+  s_7c18c71902a5a6::t_1bb323f17e634d 160
+  s_7c18c71902a5a6::t_72d61344802306 1
+README.md
+  s_7c18c71902a5a6::t_95e1948ff453c6 1,15,193
+  s_7c18c71902a5a6::t_512e00441681b5 5-6,21-22,25,28,31,37-38,47,50,56-57,91,102,105,108,119,122-126,147-151,168
+CONTRIBUTING.md
+  s_7c18c71902a5a6::t_663b187860a8ae 27
+  s_7c18c71902a5a6::t_6065cfa3b2ffbb 1
+  s_7c18c71902a5a6::t_679bef7524358a 8,25
+  s_7c18c71902a5a6::t_643fc3251a446a 9
+packages/generator/src/plugin-json.ts
+  s_7c18c71902a5a6::t_a9ed2f8b6021c1 1-2
+packages/cli/src/commands/init.ts
+  s_7c18c71902a5a6::t_62bc846bb08405 5,11,17
+packages/sources/src/vscode/index.ts
+  s_7c18c71902a5a6::t_70d0ef5a9d8ab4 9-10
+packages/generator/src/extensions.ts
+  s_7c18c71902a5a6::t_f892a598691eaf 1
+packages/generator/package.json
+  s_7c18c71902a5a6::t_8dfe6f5f446627 2
+  s_7c18c71902a5a6::t_4285f43b985dfb 4
+  s_7c18c71902a5a6::t_d2e389b7464970 9
+  s_7c18c71902a5a6::t_d058c9a795dc6a 19
+packages/cli/src/index.ts
+  s_7c18c71902a5a6::t_69eba6e51bb655 12
+tests/core/schemas.test.ts
+  s_7c18c71902a5a6::t_9e12bde8d156ec 2
+packages/sources/src/cursor/index.ts
+  s_7c18c71902a5a6::t_0086c00b228534 9-10
+packages/generator/src/skills.ts
+  s_7c18c71902a5a6::t_4b7387823fc511 1
+tests/generator/generator.test.ts
+  s_7c18c71902a5a6::t_1545263e869a54 4-5
+plugin.json
+  s_7c18c71902a5a6::t_a15a0c2f409c08 3
+packages/cli/src/commands/create.ts
+  s_7c18c71902a5a6::t_cc90c5556a9a6d 4,8-9
+AGENTS.md
+  s_7c18c71902a5a6::t_5caf60dc2fc194 35
+  s_7c18c71902a5a6::t_3f9ab7e50e2eee 1,7
+  s_7c18c71902a5a6::t_8de9083cc8f9fe 45
+  s_7c18c71902a5a6::t_d70fe5c4fdaa82 18
+  s_7c18c71902a5a6::t_114674f35c75b2 15-17
+packages/cli/package.json
+  s_7c18c71902a5a6::t_1601dd65f009bc 9
+  s_7c18c71902a5a6::t_2b1718d7c9166d 26-28
+  s_7c18c71902a5a6::t_739792a4a1cedc 17
+  s_7c18c71902a5a6::t_4098906fe7ba26 4
+  s_7c18c71902a5a6::t_29c87576a535e5 2
+  s_7c18c71902a5a6::t_4462a31dd85208 12
+.github/ISSUE_TEMPLATE/bug_report.yml
+  s_7c18c71902a5a6::t_3a8d71cc06ddb2 8-9
+  s_7c18c71902a5a6::t_969fa8cbb8321b 2
+docs/ARCHITECTURE.md
+  s_7c18c71902a5a6::t_69ec02f03caf46 5
+  s_7c18c71902a5a6::t_fda4f228142cba 7-10
+.github/ISSUE_TEMPLATE/feature_request.yml
+  s_7c18c71902a5a6::t_5e1cf5589d1cc2 2
+tests/core/config.test.ts
+  s_7c18c71902a5a6::t_847b4927429a32 4
+tests/cli/commands.test.ts
+  s_7c18c71902a5a6::t_4684038e7975c8 10,32,73,96,137,161,185,209,215,231,237,253,259,275,281
+SECURITY.md
+  s_7c18c71902a5a6::t_be836ba6af84f9 11
+  s_7c18c71902a5a6::t_f67aae7f5cfbd9 30,39
+packages/sources/src/opencode/index.ts
+  s_7c18c71902a5a6::t_56e774d3680f7d 9-10
+docs/BLIND_TEST_V0_0_1_RESPONSE.md
+  s_7c18c71902a5a6::t_70ebf8a79610a0 3
+  s_7c18c71902a5a6::t_a344ebff206814 13
+CHANGELOG.md
+  s_7c18c71902a5a6::t_23cab2fba35971 100-105
+  s_7c18c71902a5a6::t_62cd4e8d3a7f11 54
+packages/core/package.json
+  s_7c18c71902a5a6::t_8b22935c7ae921 4
+  s_7c18c71902a5a6::t_3cd183660aa534 9
+  s_7c18c71902a5a6::t_6f16e0de4d7dd1 2
+bun.lock
+  s_7c18c71902a5a6::t_31b00d3244a5bb 6,8-11,22-23,25,28-30,42-43,50-51,53,58-59,61,65-66,68,73,75,77,79,97,119,201
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "2e3871a89d9f72be5c5e06f0fcb8db6d6e5c4474",
+  "prompts": {},
+  "sessions": {
+    "s_7c18c71902a5a6": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_0221afccaffeQkdKetP6VXPwUs",
+        "model": "deepseek-v4-flash"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    }
+  }
+}
