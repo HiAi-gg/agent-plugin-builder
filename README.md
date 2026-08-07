@@ -1,8 +1,7 @@
 # Agent Plugins Builder
 
 Create, convert, and package portable Agent Plugins from existing agent setups, skills, and MCP servers.
-
-[![CI](https://github.com/HiAi-gg/agent-pluginss-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/HiAi-gg/agent-pluginss-builder/actions/workflows/ci.yml)
+[![CI](https://github.com/HiAi-gg/agent-plugins-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/HiAi-gg/agent-plugins-builder/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@hiai-gg/agent-pluginss-builder)](https://www.npmjs.com/package/@hiai-gg/agent-pluginss-builder)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue)](https://www.typescriptlang.org/)
