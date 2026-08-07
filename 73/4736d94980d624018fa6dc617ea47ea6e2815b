@@ -1,0 +1,36 @@
+packages/cli/package.json
+  s_8e32bc7e4b5820::t_8a889eba3407d6 3
+packages/core/package.json
+  s_8e32bc7e4b5820::t_2f76a1fb1a7d9a 3
+packages/sources/package.json
+  s_8e32bc7e4b5820::t_c3def468fcba06 3
+package.json
+  s_8e32bc7e4b5820::t_482880e68a0ed8 3
+packages/generator/package.json
+  s_8e32bc7e4b5820::t_e7adacd47de206 3
+plugin.json
+  s_8e32bc7e4b5820::t_81615abeeaa3a4 4
+packages/cli/src/index.ts
+  s_8e32bc7e4b5820::t_9b48c846f0335f 32
+packages/npm/package.json
+  s_8e32bc7e4b5820::t_98e554d8e2ad7a 3
+CHANGELOG.md
+  s_8e32bc7e4b5820::t_248fea8784d64b 10-15
+  s_8e32bc7e4b5820::t_9578b9f38a67c3 88
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "734736d94980d624018fa6dc617ea47ea6e2815b",
+  "prompts": {},
+  "sessions": {
+    "s_8e32bc7e4b5820": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_022472750ffe6EVzqQOt092gWk",
+        "model": "longcat-2.0-free"
+      },
+      "human_author": "vlgalib <vlgalib@users.noreply.github.com>"
+    }
+  }
+}
