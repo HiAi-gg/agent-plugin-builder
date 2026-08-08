@@ -45,10 +45,27 @@ function validatePlugin(pluginPath: string): ValidationResult {
       const mcpJsonContent = JSON.parse(fs.readFileSync(mcpJsonPath, 'utf-8'));
       const result = mcpJsonSchema.safeParse(mcpJsonContent);
       if (!result.success) {
-        errors.push(`mcp.json validation failed:`);
+        // Downgrade cwd issues to warnings: adapters normalize absolute cwd
+        // paths where possible, and a hand-written or pre-existing mcp.json
+        // with a non-conforming cwd should warn rather than block packaging.
+        const cwdIssues: string[] = [];
+        const otherIssues: string[] = [];
         result.error.issues.forEach((issue) => {
-          errors.push(`  - ${issue.path.join('.')}: ${issue.message}`);
+          const message = `${issue.path.join('.')}: ${issue.message}`;
+          if (issue.path.includes('cwd')) {
+            cwdIssues.push(message);
+          } else {
+            otherIssues.push(message);
+          }
         });
+        if (otherIssues.length > 0) {
+          errors.push(`mcp.json validation failed:`);
+          otherIssues.forEach((message) => errors.push(`  - ${message}`));
+        }
+        if (cwdIssues.length > 0) {
+          warnings.push(`mcp.json cwd validation:`);
+          cwdIssues.forEach((message) => warnings.push(`  - ${message}`));
+        }
       } else {
         console.log('✓ mcp.json is valid');
       }

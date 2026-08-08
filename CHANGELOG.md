@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.9] — 2026-08-08
+
+### Fixed
+
+- **ECO-001:** Fixed duplicate YAML frontmatter in generated SKILL.md files when skill body already contained frontmatter. Added stripLeadingFrontmatter() to ensure exactly one canonical frontmatter block.
+- **ECO-004:** Fixed cwd validation gap where Builder emitted absolute paths that its own schema rejected. vscode/opencode adapters now normalize absolute cwd values to `./relative` format when under project root.
+- **ECO-012:** Fixed Claude and Cursor migration silently dropping MCP configuration. Added explicit type mapping (stdio/streamable-http/sse) with warnings for unsupported types.
+
+### Added
+
+- **ECO-007:** Added `--dry-run` support to `create` command. Now respects global `--dry-run` flag and previews files without writing.
+- **ECO-008:** Improved error handling for missing config files. Now produces clean "Config file not found" message instead of raw ENOENT with stack trace.
+- Global error handler for clean CLI UX (no stack traces on errors)
+- migrate and init commands now respect global `--dry-run` flag
+
+### Tests
+
+- Added 14 frontmatter deduplication regression tests
+- Added 12 cwd validation tests
+- Added 23 MCP migration tests (Claude + Cursor)
+- Added 4 CLI dry-run + error handling tests
+- Added 5 Builder → Doctor contract tests
+- Total: 103 tests passing
+
+### Documentation
+
+- Added docs/ECOSYSTEM_AUDIT_FIXES_0_0_9.md mapping all ecosystem audit findings to fixes
+- Updated docs/MIGRATION_SOURCES.md with Claude/Cursor MCP type mapping details
+
 ## [0.0.8] — 2026-08-07
 
 ### Changed
@@ -114,6 +143,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Documentation**: README, ARCHITECTURE.md, MIGRATION_SOURCES.md, AGENT_PLUGINS_SPEC_SUPPORT.md
 - **CI**: GitHub Actions workflow testing on Linux, macOS, and Windows
 
+[0.0.9]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.9
 [0.0.8]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.8
 [0.0.7]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.7
 [0.0.6]: https://github.com/HiAi-gg/agent-plugins-builder/releases/tag/v0.0.6

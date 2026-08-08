@@ -1,13 +1,17 @@
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+import * as fs from "node:fs";
+import * as path from "node:path";
 import type {
   PortablePlugin,
   PortableSkill,
   PortableMcpServer,
   SourceArtifact,
   MigrationWarning,
-} from '@agent-plugins-builder/core';
-import { MigrationClassification } from '@agent-plugins-builder/core';
+} from "@agent-plugins-builder/core";
+import {
+  MigrationClassification,
+  normalizeMcpCwd,
+} from "@agent-plugins-builder/core";
+import { parseSkillFrontmatter } from "../parse-frontmatter.ts";
 
 export interface VscodeAdapterResult {
   plugin: PortablePlugin;
@@ -17,12 +21,14 @@ export interface VscodeAdapterResult {
 
 export function detectVscodeProject(rootPath: string): boolean {
   return (
-    fs.existsSync(path.join(rootPath, '.github')) ||
-    fs.existsSync(path.join(rootPath, '.vscode'))
+    fs.existsSync(path.join(rootPath, ".github")) ||
+    fs.existsSync(path.join(rootPath, ".vscode"))
   );
 }
 
-export async function migrateVscodeProject(rootPath: string): Promise<VscodeAdapterResult> {
+export async function migrateVscodeProject(
+  rootPath: string,
+): Promise<VscodeAdapterResult> {
   const artifacts: SourceArtifact[] = [];
   const warnings: MigrationWarning[] = [];
   const skills: PortableSkill[] = [];
@@ -30,71 +36,54 @@ export async function migrateVscodeProject(rootPath: string): Promise<VscodeAdap
   let instructions: string | undefined;
 
   // Read .github/copilot-instructions.md → instructions
-  const copilotInstructionsPath = path.join(rootPath, '.github', 'copilot-instructions.md');
+  const copilotInstructionsPath = path.join(
+    rootPath,
+    ".github",
+    "copilot-instructions.md",
+  );
   if (fs.existsSync(copilotInstructionsPath)) {
-    instructions = fs.readFileSync(copilotInstructionsPath, 'utf-8');
+    instructions = fs.readFileSync(copilotInstructionsPath, "utf-8");
     artifacts.push({
-      path: '.github/copilot-instructions.md',
-      format: 'vscode-instructions',
+      path: ".github/copilot-instructions.md",
+      format: "vscode-instructions",
       classification: MigrationClassification.PORTABLE,
     });
   }
 
   // Read AGENTS.md → instructions (if not already set)
-  const agentsMdPath = path.join(rootPath, 'AGENTS.md');
+  const agentsMdPath = path.join(rootPath, "AGENTS.md");
   if (!instructions && fs.existsSync(agentsMdPath)) {
-    instructions = fs.readFileSync(agentsMdPath, 'utf-8');
+    instructions = fs.readFileSync(agentsMdPath, "utf-8");
     artifacts.push({
-      path: 'AGENTS.md',
-      format: 'vscode-instructions',
+      path: "AGENTS.md",
+      format: "vscode-instructions",
       classification: MigrationClassification.PORTABLE,
     });
   }
 
   // Read .github/skills/
-  const skillsDir = path.join(rootPath, '.github', 'skills');
+  const skillsDir = path.join(rootPath, ".github", "skills");
   if (fs.existsSync(skillsDir) && fs.statSync(skillsDir).isDirectory()) {
     const skillDirs = fs.readdirSync(skillsDir);
     for (const skillDir of skillDirs) {
-      const skillMdPath = path.join(skillsDir, skillDir, 'SKILL.md');
+      const skillMdPath = path.join(skillsDir, skillDir, "SKILL.md");
       if (fs.existsSync(skillMdPath)) {
-        const content = fs.readFileSync(skillMdPath, 'utf-8');
-        // Parse frontmatter (simplified)
-        const lines = content.split('\n');
-        let inFrontmatter = false;
-        let frontmatter = '';
-        let body = '';
-
-        for (const line of lines) {
-          if (line.trim() === '---') {
-            if (!inFrontmatter) {
-              inFrontmatter = true;
-              continue;
-            } else {
-              inFrontmatter = false;
-              continue;
-            }
-          }
-          if (inFrontmatter) {
-            frontmatter += line + '\n';
-          } else {
-            body += line + '\n';
-          }
-        }
+        const content = fs.readFileSync(skillMdPath, "utf-8");
+        const { frontmatter, body } = parseSkillFrontmatter(content);
 
         const nameMatch = frontmatter.match(/^name:\s*(.+)$/m);
         const descMatch = frontmatter.match(/^description:\s*(.+)$/m);
 
         skills.push({
           name: nameMatch?.[1]?.trim() || skillDir,
-          description: descMatch?.[1]?.trim() || 'Migrated skill',
+          description: descMatch?.[1]?.trim() || "Migrated skill",
           body: body.trim(),
           sourcePath: `.github/skills/${skillDir}/SKILL.md`,
         });
 
         artifacts.push({
           path: `.github/skills/${skillDir}/SKILL.md`,
-          format: 'vscode-skill',
+          format: "vscode-skill",
           classification: MigrationClassification.PORTABLE,
         });
       }
@@ -102,10 +91,10 @@ export async function migrateVscodeProject(rootPath: string): Promise<VscodeAdap
   }
 
   // Read .vscode/mcp.json → extract servers (CRITICAL: uses 'servers' not 'mcpServers')
-  const mcpJsonPath = path.join(rootPath, '.vscode', 'mcp.json');
+  const mcpJsonPath = path.join(rootPath, ".vscode", "mcp.json");
   if (fs.existsSync(mcpJsonPath)) {
     try {
-      const mcpContent = JSON.parse(fs.readFileSync(mcpJsonPath, 'utf-8'));
+      const mcpContent = JSON.parse(fs.readFileSync(mcpJsonPath, "utf-8"));
 
       // VS Code uses 'servers' key, need to remap to our format
       const servers = mcpContent.servers || mcpContent.mcpServers;
@@ -115,25 +104,36 @@ export async function migrateVscodeProject(rootPath: string): Promise<VscodeAdap
           const serverConfig = server as any;
 
           // Map VS Code server types to our types
-          if (serverConfig.type === 'stdio') {
+          if (serverConfig.type === "stdio") {
+            const { cwd, warning } = normalizeMcpCwd(
+              rootPath,
+              name,
+              serverConfig.cwd,
+            );
+            if (warning) {
+              warnings.push(warning);
+            }
             mcpServers.push({
-              type: 'stdio',
+              type: "stdio",
               command: serverConfig.command,
               args: serverConfig.args,
               env: serverConfig.env,
-              cwd: serverConfig.cwd,
+              cwd,
               _name: name,
             });
-          } else if (serverConfig.type === 'http' || serverConfig.type === 'streamable-http') {
+          } else if (
+            serverConfig.type === "http" ||
+            serverConfig.type === "streamable-http"
+          ) {
             mcpServers.push({
-              type: 'streamable-http',
+              type: "streamable-http",
               url: serverConfig.url,
               headers: serverConfig.headers,
               _name: name,
             });
-          } else if (serverConfig.type === 'sse') {
+          } else if (serverConfig.type === "sse") {
             mcpServers.push({
-              type: 'sse',
+              type: "sse",
               url: serverConfig.url,
               headers: serverConfig.headers,
               _name: name,
@@ -143,40 +143,40 @@ export async function migrateVscodeProject(rootPath: string): Promise<VscodeAdap
       }
 
       artifacts.push({
-        path: '.vscode/mcp.json',
-        format: 'vscode-mcp',
+        path: ".vscode/mcp.json",
+        format: "vscode-mcp",
         classification: MigrationClassification.PORTABLE,
       });
     } catch (error) {
       warnings.push({
-        severity: 'error',
+        severity: "error",
         message: `Failed to parse .vscode/mcp.json: ${error}`,
       });
     }
   }
 
   // Detect .github/agents/ (UNSUPPORTED)
-  const agentsDir = path.join(rootPath, '.github', 'agents');
+  const agentsDir = path.join(rootPath, ".github", "agents");
   if (fs.existsSync(agentsDir) && fs.statSync(agentsDir).isDirectory()) {
     const agentFiles = fs.readdirSync(agentsDir);
     for (const agentFile of agentFiles) {
       artifacts.push({
         path: `.github/agents/${agentFile}`,
-        format: 'vscode-agent',
+        format: "vscode-agent",
         classification: MigrationClassification.UNSUPPORTED,
       });
     }
     warnings.push({
-      severity: 'info',
+      severity: "info",
       message: `Found ${agentFiles.length} VS Code custom agent(s) - not supported in Agent Plugins v1`,
-      component: 'agents',
+      component: "agents",
     });
   }
 
   const plugin: PortablePlugin = {
     metadata: {
-      name: 'migrated-plugin',
-      description: 'Migrated from VS Code/Copilot',
+      name: "migrated-plugin",
+      description: "Migrated from VS Code/Copilot",
     },
     instructions,
     skills,

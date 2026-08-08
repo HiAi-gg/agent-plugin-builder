@@ -461,6 +461,7 @@ export const initCommand = new Command('init')
   .action(
     async (directory: string | undefined, _options: any, command: Command) => {
       const opts = command.optsWithGlobals();
+      const dryRun = opts.dryRun;
 
       // Declarative config path — no prompts at all
       if (opts.config) {
@@ -468,9 +469,17 @@ export const initCommand = new Command('init')
         const config = parseConfigFile(configPath);
         const plugin = configToPortablePlugin(config, path.dirname(configPath));
         const outputDir = path.resolve(directory || `./${config.name}`);
-        const result = generatePlugin({ plugin, outputDir });
-        console.log(`✓ Created Agent Plugin in ${outputDir}`);
-        console.log(`  Created ${result.filesCreated.length} files`);
+        const result = generatePlugin({ plugin, outputDir, dryRun });
+        if (dryRun) {
+          console.log('\nDry run - would create:');
+          result.filesCreated.forEach((file) => {
+            const rel = path.relative(outputDir, file) || path.basename(file);
+            console.log(`  ${rel}`);
+          });
+        } else {
+          console.log(`✓ Created Agent Plugin in ${outputDir}`);
+          console.log(`  Created ${result.filesCreated.length} files`);
+        }
         return;
       }
 
@@ -514,11 +523,24 @@ export const initCommand = new Command('init')
         }
       }
 
-      const result = generatePlugin({ plugin, outputDir, force: opts.force });
-      console.log(`✓ Created Agent Plugin in ${outputDir}`);
-      console.log(`  Created ${result.filesCreated.length} files`);
-      if (result.warnings.length > 0) {
-        result.warnings.forEach((warning) => console.log(`  ⚠ ${warning}`));
+      const result = generatePlugin({
+        plugin,
+        outputDir,
+        dryRun,
+        force: opts.force,
+      });
+      if (dryRun) {
+        console.log('\nDry run - would create:');
+        result.filesCreated.forEach((file) => {
+          const rel = path.relative(outputDir, file) || path.basename(file);
+          console.log(`  ${rel}`);
+        });
+      } else {
+        console.log(`✓ Created Agent Plugin in ${outputDir}`);
+        console.log(`  Created ${result.filesCreated.length} files`);
+        if (result.warnings.length > 0) {
+          result.warnings.forEach((warning) => console.log(`  ⚠ ${warning}`));
+        }
       }
     },
   );

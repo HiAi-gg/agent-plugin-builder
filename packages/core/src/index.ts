@@ -15,3 +15,4 @@ export * from './config';
 // Utilities
 export * from './path';
 export * from './env';
+export * from './normalize-cwd';

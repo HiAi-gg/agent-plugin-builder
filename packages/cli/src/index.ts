@@ -29,9 +29,12 @@ export function run() {
   // `create --version <version>` flag before it reaches the subcommand.
   const args = process.argv.slice(2);
   if (args.length === 1 && (args[0] === '--version' || args[0] === '-V')) {
-    console.log('0.0.8');
+    console.log('0.0.9');
     process.exit(0);
   }
 
-  program.parse();
+  program.parseAsync().catch((err) => {
+    console.error('Error:', err.message);
+    process.exit(1);
+  });
 }

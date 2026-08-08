@@ -1,6 +1,6 @@
 {
   "name": "@hiai-gg/agent-plugins-builder",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Create, convert, and package portable Agent Plugins from existing agent setups, skills, and MCP servers",
   "type": "module",
   "license": "MIT",

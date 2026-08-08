@@ -1,7 +1,16 @@
-import { describe, test, expect } from 'bun:test';
+import { describe, test, expect, afterAll } from 'bun:test';
 import { execSync } from 'node:child_process';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+
+// CLI tests shell out to the real binary, so they run from the repo root and
+// write to a scratch directory that is removed once the suite finishes.
+const projectRoot = path.resolve(import.meta.dir, '..', '..');
+const tmpDir = fs.mkdtempSync(path.join('/tmp', 'agent-plugins-cli-'));
+
+afterAll(() => {
+  fs.rmSync(tmpDir, { recursive: true, force: true });
+});
 
 describe('CLI commands', () => {
   test('init --yes creates plugin with defaults', () => {
@@ -86,6 +95,54 @@ license-file: MIT
       fs.readFileSync(path.join(outputDir, 'mcp.json'), 'utf-8'),
     );
     expect(Object.keys(mcpJson.mcpServers)).toEqual(['init-server']);
+
+    fs.rmSync(configDir, { recursive: true });
+  });
+
+  test('init --yes --dry-run previews without writing files', () => {
+    const outputDir = '/tmp/test-cli-init-dry-' + Date.now();
+    const result = execSync(
+      `bun packages/cli/bin/agent-plugins init --yes --dry-run --name dry-plugin ${outputDir}`,
+      { stdio: 'pipe', encoding: 'utf-8' },
+    );
+
+    expect(result).toContain('Dry run - would create:');
+    expect(result).toContain('plugin.json');
+    expect(fs.existsSync(path.join(outputDir, 'plugin.json'))).toBe(false);
+    expect(fs.existsSync(outputDir)).toBe(false);
+  });
+
+  test('init --config --dry-run previews without writing files', () => {
+    const configDir = '/tmp/test-cli-init-config-dry-' + Date.now();
+    fs.mkdirSync(configDir, { recursive: true });
+    const configPath = path.join(configDir, 'plugin.yml');
+    fs.writeFileSync(
+      configPath,
+      `name: dry-config-plugin
+version: 0.1.0
+description: A dry-run config plugin
+license: MIT
+skills:
+  - name: dry-skill
+    description: A skill from config
+    body: |
+      # Dry Skill
+readme: true
+license-file: MIT
+`,
+      'utf-8',
+    );
+    const outputDir = path.join(configDir, 'out');
+
+    const result = execSync(
+      `bun packages/cli/bin/agent-plugins init --config ${configPath} ${outputDir} --dry-run`,
+      { stdio: 'pipe', encoding: 'utf-8' },
+    );
+
+    expect(result).toContain('Dry run - would create:');
+    expect(result).toContain('plugin.json');
+    expect(fs.existsSync(path.join(outputDir, 'plugin.json'))).toBe(false);
+    expect(fs.existsSync(outputDir)).toBe(false);
 
     fs.rmSync(configDir, { recursive: true });
   });
@@ -203,6 +260,47 @@ license-file: MIT
     fs.rmSync(outputDir, { recursive: true });
   });
 
+  test('create --dry-run lists files and writes nothing', () => {
+    const outputDir = path.join(tmpDir, 'create-dry');
+    const result = execSync(
+      `bun packages/cli/bin/agent-plugins create --name test-plugin --dry-run --output ${outputDir}`,
+      { encoding: 'utf-8', cwd: projectRoot, stdio: 'pipe' },
+    );
+
+    expect(result).toContain('Dry run');
+    expect(result).toContain('plugin.json');
+    expect(fs.existsSync(outputDir)).toBe(false);
+  });
+
+  test('create without --dry-run writes files', () => {
+    const outputDir = path.join(tmpDir, 'create-real');
+    execSync(
+      `bun packages/cli/bin/agent-plugins create --name test-plugin --output ${outputDir}`,
+      { encoding: 'utf-8', cwd: projectRoot, stdio: 'pipe' },
+    );
+
+    expect(fs.existsSync(path.join(outputDir, 'plugin.json'))).toBe(true);
+    expect(
+      fs.existsSync(path.join(outputDir, 'skills', 'example-skill', 'SKILL.md')),
+    ).toBe(true);
+  });
+
+  test('migrate --from claude --dry-run previews without creating output dir', () => {
+    const fixtureDir = path.join(tmpDir, 'fixture');
+    fs.mkdirSync(fixtureDir, { recursive: true });
+    fs.writeFileSync(path.join(fixtureDir, 'CLAUDE.md'), '# Instructions');
+
+    const outputDir = path.join(tmpDir, 'migrate-dry');
+    const result = execSync(
+      `bun packages/cli/bin/agent-plugins migrate ${fixtureDir} --from claude --dry-run --output ${outputDir}`,
+      { encoding: 'utf-8', cwd: projectRoot, stdio: 'pipe' },
+    );
+
+    expect(result).toContain('Dry run');
+    expect(result).toContain('plugin.json');
+    expect(fs.existsSync(outputDir)).toBe(false);
+  });
+
   test('package creates a zip archive by default', () => {
     const pluginDir = '/tmp/test-cli-pkg-src-' + Date.now();
     execSync(
@@ -286,5 +384,19 @@ license-file: MIT
 
     fs.rmSync(pluginDir, { recursive: true });
     fs.rmSync(outDir, { recursive: true, force: true });
+  });
+
+  test('missing config produces clean error with exit code 1', () => {
+    try {
+      execSync(
+        `bun packages/cli/bin/agent-plugins create --config /nonexistent.yml`,
+        { encoding: 'utf-8', cwd: projectRoot, stdio: 'pipe' },
+      );
+      throw new Error('Should have thrown');
+    } catch (err: any) {
+      expect(err.status).toBe(1);
+      expect(err.stderr).toContain('Config file not found');
+      expect(err.stderr).not.toContain('at Object'); // No stack trace
+    }
   });
 });

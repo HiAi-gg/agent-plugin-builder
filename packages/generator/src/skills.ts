@@ -41,5 +41,43 @@ export function generateSkillMd(skill: PortableSkill): string {
     defaultKeyType: 'PLAIN',
   }).trim();
 
-  return `---\n${yamlStr}\n---\n\n${skill.body}\n`;
+  // Strip leading frontmatter from body if present
+  const body = stripLeadingFrontmatter(skill.body);
+
+  return `---\n${yamlStr}\n---\n\n${body}\n`;
+}
+
+/**
+ * Removes a leading YAML frontmatter block from a markdown body so that
+ * generateSkillMd() does not emit duplicate frontmatter (e.g. when the body
+ * came from a `body-file` read or a migration source that already contains it).
+ *
+ * Only a complete frontmatter block at the very start of the content is
+ * stripped. If the content does not start with `---`, if the closing `---` is
+ * missing, or if the leading `---` is merely a horizontal rule, the content is
+ * returned unchanged.
+ */
+function stripLeadingFrontmatter(content: string): string {
+  const trimmed = content.trimStart();
+  if (!trimmed.startsWith('---')) {
+    return content; // No leading frontmatter
+  }
+
+  // Find closing '---' after the opening
+  const lines = trimmed.split('\n');
+  let closingIndex = -1;
+
+  for (let i = 1; i < lines.length; i++) {
+    if (lines[i].trim() === '---') {
+      closingIndex = i;
+      break;
+    }
+  }
+
+  if (closingIndex === -1) {
+    return content; // Unclosed frontmatter, preserve as-is
+  }
+
+  // Return everything after the closing '---'
+  return lines.slice(closingIndex + 1).join('\n').trimStart();
 }

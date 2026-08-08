@@ -1,13 +1,14 @@
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+import * as fs from "node:fs";
+import * as path from "node:path";
 import type {
   PortablePlugin,
   PortableSkill,
   PortableMcpServer,
   SourceArtifact,
   MigrationWarning,
-} from '@agent-plugins-builder/core';
-import { MigrationClassification } from '@agent-plugins-builder/core';
+} from "@agent-plugins-builder/core";
+import { MigrationClassification } from "@agent-plugins-builder/core";
+import { parseSkillFrontmatter } from "../parse-frontmatter.ts";
 
 export interface CursorAdapterResult {
   plugin: PortablePlugin;
@@ -16,59 +17,40 @@ export interface CursorAdapterResult {
 }
 
 export function detectCursorProject(rootPath: string): boolean {
-  return fs.existsSync(path.join(rootPath, '.cursor'));
+  return fs.existsSync(path.join(rootPath, ".cursor"));
 }
 
-export async function migrateCursorProject(rootPath: string): Promise<CursorAdapterResult> {
+export async function migrateCursorProject(
+  rootPath: string,
+): Promise<CursorAdapterResult> {
   const artifacts: SourceArtifact[] = [];
   const warnings: MigrationWarning[] = [];
   const skills: PortableSkill[] = [];
   const mcpServers: PortableMcpServer[] = [];
 
   // Read .cursor/skills/
-  const skillsDir = path.join(rootPath, '.cursor', 'skills');
+  const skillsDir = path.join(rootPath, ".cursor", "skills");
   if (fs.existsSync(skillsDir) && fs.statSync(skillsDir).isDirectory()) {
     const skillDirs = fs.readdirSync(skillsDir);
     for (const skillDir of skillDirs) {
-      const skillMdPath = path.join(skillsDir, skillDir, 'SKILL.md');
+      const skillMdPath = path.join(skillsDir, skillDir, "SKILL.md");
       if (fs.existsSync(skillMdPath)) {
-        const content = fs.readFileSync(skillMdPath, 'utf-8');
-        // Parse frontmatter (simplified)
-        const lines = content.split('\n');
-        let inFrontmatter = false;
-        let frontmatter = '';
-        let body = '';
-
-        for (const line of lines) {
-          if (line.trim() === '---') {
-            if (!inFrontmatter) {
-              inFrontmatter = true;
-              continue;
-            } else {
-              inFrontmatter = false;
-              continue;
-            }
-          }
-          if (inFrontmatter) {
-            frontmatter += line + '\n';
-          } else {
-            body += line + '\n';
-          }
-        }
+        const content = fs.readFileSync(skillMdPath, "utf-8");
+        const { frontmatter, body } = parseSkillFrontmatter(content);
 
         const nameMatch = frontmatter.match(/^name:\s*(.+)$/m);
         const descMatch = frontmatter.match(/^description:\s*(.+)$/m);
 
         skills.push({
           name: nameMatch?.[1]?.trim() || skillDir,
-          description: descMatch?.[1]?.trim() || 'Migrated skill',
+          description: descMatch?.[1]?.trim() || "Migrated skill",
           body: body.trim(),
           sourcePath: `.cursor/skills/${skillDir}/SKILL.md`,
         });
 
         artifacts.push({
           path: `.cursor/skills/${skillDir}/SKILL.md`,
-          format: 'cursor-skill',
+          format: "cursor-skill",
           classification: MigrationClassification.PORTABLE,
         });
       }
@@ -76,84 +58,147 @@ export async function migrateCursorProject(rootPath: string): Promise<CursorAdap
   }
 
   // Read .cursor/mcp.json
-  const mcpJsonPath = path.join(rootPath, '.cursor', 'mcp.json');
+  const mcpJsonPath = path.join(rootPath, ".cursor", "mcp.json");
   if (fs.existsSync(mcpJsonPath)) {
     try {
-      const mcpContent = JSON.parse(fs.readFileSync(mcpJsonPath, 'utf-8'));
+      const mcpContent = JSON.parse(fs.readFileSync(mcpJsonPath, "utf-8"));
       if (mcpContent.mcpServers) {
         for (const [name, server] of Object.entries(mcpContent.mcpServers)) {
-          mcpServers.push({ ...(server as PortableMcpServer), _name: name });
+          const s = server as any;
+
+          // Determine transport type
+          let type: "stdio" | "streamable-http" | "sse";
+          if (s.type === "sse") {
+            type = "sse";
+          } else if (
+            s.type === "http" ||
+            s.type === "streamable-http" ||
+            s.type === "remote"
+          ) {
+            type = "streamable-http";
+          } else if (
+            s.command ||
+            s.type === "stdio" ||
+            s.type === "local" ||
+            !s.type
+          ) {
+            type = "stdio";
+          } else {
+            // Unknown type
+            warnings.push({
+              severity: "warning",
+              message: `MCP server "${name}" has unsupported type: ${s.type}`,
+              component: "mcp",
+            });
+            continue;
+          }
+
+          // Build portable server with explicit field extraction
+          if (type === "stdio") {
+            if (!s.command) {
+              warnings.push({
+                severity: "warning",
+                message: `MCP server "${name}" is stdio but missing command`,
+                component: "mcp",
+              });
+              continue;
+            }
+            mcpServers.push({
+              type: "stdio",
+              command: s.command,
+              args: s.args,
+              env: s.env,
+              cwd: s.cwd,
+              _name: name,
+            } as PortableMcpServer);
+          } else {
+            // streamable-http or sse
+            if (!s.url) {
+              warnings.push({
+                severity: "warning",
+                message: `MCP server "${name}" is ${type} but missing url`,
+                component: "mcp",
+              });
+              continue;
+            }
+            mcpServers.push({
+              type,
+              url: s.url,
+              headers: s.headers,
+              _name: name,
+            } as PortableMcpServer);
+          }
         }
       }
       artifacts.push({
-        path: '.cursor/mcp.json',
-        format: 'cursor-mcp',
+        path: ".cursor/mcp.json",
+        format: "cursor-mcp",
         classification: MigrationClassification.PORTABLE,
       });
     } catch (error) {
       warnings.push({
-        severity: 'error',
+        severity: "error",
         message: `Failed to parse .cursor/mcp.json: ${error}`,
       });
     }
   }
 
   // Detect .cursor/rules/*.mdc (CLIENT_SPECIFIC)
-  const rulesDir = path.join(rootPath, '.cursor', 'rules');
+  const rulesDir = path.join(rootPath, ".cursor", "rules");
   if (fs.existsSync(rulesDir) && fs.statSync(rulesDir).isDirectory()) {
     const ruleFiles = fs.readdirSync(rulesDir);
     for (const ruleFile of ruleFiles) {
       artifacts.push({
         path: `.cursor/rules/${ruleFile}`,
-        format: 'cursor-rule',
+        format: "cursor-rule",
         classification: MigrationClassification.CLIENT_SPECIFIC,
       });
     }
     warnings.push({
-      severity: 'info',
+      severity: "info",
       message: `Found ${ruleFiles.length} Cursor rule(s) with globs - these are client-specific`,
-      component: 'rules',
+      component: "rules",
     });
   }
 
   // Detect .cursor/hooks.json (CLIENT_SPECIFIC)
-  const hooksPath = path.join(rootPath, '.cursor', 'hooks.json');
+  const hooksPath = path.join(rootPath, ".cursor", "hooks.json");
   if (fs.existsSync(hooksPath)) {
     artifacts.push({
-      path: '.cursor/hooks.json',
-      format: 'cursor-hooks',
+      path: ".cursor/hooks.json",
+      format: "cursor-hooks",
       classification: MigrationClassification.CLIENT_SPECIFIC,
-      originalContent: fs.readFileSync(hooksPath, 'utf-8'),
+      originalContent: fs.readFileSync(hooksPath, "utf-8"),
     });
     warnings.push({
-      severity: 'warning',
-      message: 'Cursor hooks are client-specific and will not be migrated',
-      component: 'hooks',
+      severity: "warning",
+      message: "Cursor hooks are client-specific and will not be migrated",
+      component: "hooks",
     });
   }
 
   // Detect .cursor/agents/ (UNSUPPORTED)
-  const agentsDir = path.join(rootPath, '.cursor', 'agents');
+  const agentsDir = path.join(rootPath, ".cursor", "agents");
   if (fs.existsSync(agentsDir) && fs.statSync(agentsDir).isDirectory()) {
     const agentFiles = fs.readdirSync(agentsDir);
     for (const agentFile of agentFiles) {
       artifacts.push({
         path: `.cursor/agents/${agentFile}`,
-        format: 'cursor-agent',
+        format: "cursor-agent",
         classification: MigrationClassification.UNSUPPORTED,
       });
     }
     warnings.push({
-      severity: 'info',
+      severity: "info",
       message: `Found ${agentFiles.length} Cursor custom agent(s) - not supported in Agent Plugins v1`,
-      component: 'agents',
+      component: "agents",
     });
   }
 
   const plugin: PortablePlugin = {
     metadata: {
-      name: 'migrated-plugin',
-      description: 'Migrated from Cursor',
+      name: "migrated-plugin",
+      description: "Migrated from Cursor",
     },
     skills,
     mcpServers,

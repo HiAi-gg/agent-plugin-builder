@@ -1,6 +1,6 @@
 {
   "name": "@agent-plugins-builder/cli",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "CLI for Agent Plugins Builder",
   "type": "module",
   "license": "MIT",
