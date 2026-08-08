@@ -196,7 +196,10 @@ license-file: MIT
   });
 
   test("normalizes absolute cwd inside config directory to relative", () => {
-    const configDir = path.join(os.tmpdir(), "test-config-cwd-in-" + Date.now());
+    const configDir = path.join(
+      os.tmpdir(),
+      "test-config-cwd-in-" + Date.now(),
+    );
     fs.mkdirSync(configDir, { recursive: true });
 
     const config = {
@@ -219,7 +222,10 @@ license-file: MIT
   });
 
   test("normalizes absolute cwd equal to config directory", () => {
-    const configDir = path.join(os.tmpdir(), "test-config-cwd-root-" + Date.now());
+    const configDir = path.join(
+      os.tmpdir(),
+      "test-config-cwd-root-" + Date.now(),
+    );
     fs.mkdirSync(configDir, { recursive: true });
 
     const config = {
@@ -240,9 +246,18 @@ license-file: MIT
   });
 
   test("preserves absolute cwd outside config directory and warns", () => {
-    const configDir = path.join(os.tmpdir(), "test-config-cwd-out-" + Date.now());
+    const configDir = path.join(
+      os.tmpdir(),
+      "test-config-cwd-out-" + Date.now(),
+    );
     fs.mkdirSync(configDir, { recursive: true });
-    const outsideCwd = "/outside/project/bin";
+    const outsideCwd = path.resolve(
+      configDir,
+      "..",
+      "outside",
+      "project",
+      "bin",
+    );
 
     const config = {
       name: "test-plugin",
@@ -270,7 +285,10 @@ license-file: MIT
   });
 
   test("passes through relative cwd unchanged", () => {
-    const configDir = path.join(os.tmpdir(), "test-config-cwd-rel-" + Date.now());
+    const configDir = path.join(
+      os.tmpdir(),
+      "test-config-cwd-rel-" + Date.now(),
+    );
     fs.mkdirSync(configDir, { recursive: true });
 
     const config = {
