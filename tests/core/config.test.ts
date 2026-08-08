@@ -1,5 +1,6 @@
 import { describe, test, expect } from "bun:test";
 import * as fs from "node:fs";
+import * as os from "node:os";
 import * as path from "node:path";
 import {
   parseConfigFile,
@@ -18,7 +19,10 @@ function stdioCwd(plugin: PortablePlugin): string | undefined {
 
 describe("plugin config parsing", () => {
   test("parses a valid config file", () => {
-    const configPath = "/tmp/test-config-" + Date.now() + ".yml";
+    const configPath = path.join(
+      os.tmpdir(),
+      "test-config-" + Date.now() + ".yml",
+    );
     fs.writeFileSync(
       configPath,
       `name: test-plugin
@@ -69,7 +73,10 @@ license-file: MIT
   });
 
   test("rejects invalid config files", () => {
-    const configPath = "/tmp/test-config-invalid-" + Date.now() + ".yml";
+    const configPath = path.join(
+      os.tmpdir(),
+      "test-config-invalid-" + Date.now() + ".yml",
+    );
     fs.writeFileSync(configPath, 'name: "UPPER_CASE!"\n', "utf-8");
 
     expect(() => parseConfigFile(configPath)).toThrow(/Invalid config file/);
@@ -78,7 +85,10 @@ license-file: MIT
   });
 
   test("throws clean error when config file does not exist", () => {
-    const configPath = "/tmp/test-config-missing-" + Date.now() + ".yml";
+    const configPath = path.join(
+      os.tmpdir(),
+      "test-config-missing-" + Date.now() + ".yml",
+    );
 
     expect(() => parseConfigFile(configPath)).toThrow(
       `Config file not found: ${configPath}`,
@@ -86,7 +96,7 @@ license-file: MIT
   });
 
   test("throws clean error when config path is a directory", () => {
-    const configDir = "/tmp/test-config-dir-" + Date.now();
+    const configDir = path.join(os.tmpdir(), "test-config-dir-" + Date.now());
     fs.mkdirSync(configDir);
 
     expect(() => parseConfigFile(configDir)).toThrow(
@@ -112,7 +122,7 @@ license-file: MIT
   });
 
   test("resolves body-file relative to config directory", () => {
-    const configDir = "/tmp/test-config-body-" + Date.now();
+    const configDir = path.join(os.tmpdir(), "test-config-body-" + Date.now());
     fs.mkdirSync(configDir, { recursive: true });
     fs.writeFileSync(
       path.join(configDir, "body.md"),
@@ -186,7 +196,7 @@ license-file: MIT
   });
 
   test("normalizes absolute cwd inside config directory to relative", () => {
-    const configDir = "/tmp/test-config-cwd-in-" + Date.now();
+    const configDir = path.join(os.tmpdir(), "test-config-cwd-in-" + Date.now());
     fs.mkdirSync(configDir, { recursive: true });
 
     const config = {
@@ -209,7 +219,7 @@ license-file: MIT
   });
 
   test("normalizes absolute cwd equal to config directory", () => {
-    const configDir = "/tmp/test-config-cwd-root-" + Date.now();
+    const configDir = path.join(os.tmpdir(), "test-config-cwd-root-" + Date.now());
     fs.mkdirSync(configDir, { recursive: true });
 
     const config = {
@@ -230,7 +240,7 @@ license-file: MIT
   });
 
   test("preserves absolute cwd outside config directory and warns", () => {
-    const configDir = "/tmp/test-config-cwd-out-" + Date.now();
+    const configDir = path.join(os.tmpdir(), "test-config-cwd-out-" + Date.now());
     fs.mkdirSync(configDir, { recursive: true });
     const outsideCwd = "/outside/project/bin";
 
@@ -260,7 +270,7 @@ license-file: MIT
   });
 
   test("passes through relative cwd unchanged", () => {
-    const configDir = "/tmp/test-config-cwd-rel-" + Date.now();
+    const configDir = path.join(os.tmpdir(), "test-config-cwd-rel-" + Date.now());
     fs.mkdirSync(configDir, { recursive: true });
 
     const config = {

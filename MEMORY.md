@@ -8,6 +8,7 @@
 
 - CI (GitHub Actions) runs `bun install --frozen-lockfile`; any fix to module resolution must work from a completely fresh `node_modules` state, not rely on pre-existing symlinks.
 - The `main`/`types` fields already point at `./src/index.ts` in all four packages; those were not the cause of the CI failure.
+- **Hardcoded `/tmp/` in tests fails on the Windows CI runner:** the CI matrix (`ci.yml`) runs `[ubuntu-latest, macos-latest, windows-latest]`. On Windows, `/tmp/x` resolves to `<drive>:\tmp\x` (drive root, e.g. `D:\tmp`) which does not exist → `fs.writeFileSync`/non-recursive `fs.mkdirSync` throw ENOENT, and error-message assertions containing the literal `/tmp/...` string mismatch the resolved path. Tests that use `fs.mkdirSync(dir, { recursive: true })` or `fs.mkdtempSync(...)` pass on Windows because they create the parent. Fix pattern: use `path.join(os.tmpdir(), ...)` (equals `/tmp` on Linux/macOS, real `%TEMP%` on Windows). When fixing CI-only test failures, always check `.github/workflows/ci.yml` matrix OSes first.
 
 ## Discovered Knowledge
 
